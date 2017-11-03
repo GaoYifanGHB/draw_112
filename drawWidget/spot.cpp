@@ -7,9 +7,12 @@ void spot::setDrawOk(int tempDrawOk){
     drawOk=tempDrawOk;
 }
 
+
+
+
 int spot::getDrawOk(){
     return drawOk;
-    qDebug("~~~~~~%d",drawOk);
+//    qDebug("~~~~~~%d",drawOk);
 }
 void spot::setWidHei(float tempW,float tempH){
     width=tempW;
