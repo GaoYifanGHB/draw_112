@@ -6,15 +6,16 @@ DrawWidget::DrawWidget(QWidget *parent) :
 {
     //allColor.flag=11;
 
-    areaGet=1;//°ßµã¸ÃËæ»úµ½ÄÄ¸öÇøÓò¸³Öµ
+    areaGet=1;//æ–‘ç‚¹è¯¥éšæœºåˆ°å“ªä¸ªåŒºåŸŸèµ‹å€¼
     //setAutoFillBackground(true);
+    //add
     //setBackgroundMode(NoBackground);
     setPalette(QPalette(Qt::white));
 
     //yes=1;
 
 
-    //¸³Öµ°ßµãÊı×é
+    //èµ‹å€¼æ–‘ç‚¹æ•°ç»„
     for(int i=0;i<maxSize;i++){
         spotNum[i]=0;
     }
@@ -23,7 +24,7 @@ DrawWidget::DrawWidget(QWidget *parent) :
     preHeight=height();
     isFirstResize=0;
 
-    //»­²¼³õÊ¼¸³Öµ
+    //ç”»å¸ƒåˆå§‹èµ‹å€¼
     drawX=400;
     drawY=300;
     drawZ=0;
@@ -31,7 +32,7 @@ DrawWidget::DrawWidget(QWidget *parent) :
     canvasPath=new QPainterPath;
     drawCanvasFlag=0;
     windowScale=1;
-    preWindowScale=1;//ÔÚ¶ÁÈëÒ»·ùÍ¼Ê±£¬¿ÉÒÔ³õÊ¼»¯Îª1
+    preWindowScale=1;//åœ¨è¯»å…¥ä¸€å¹…å›¾æ—¶ï¼Œå¯ä»¥åˆå§‹åŒ–ä¸º1
     //wheelFlag=0;
 
 
@@ -42,8 +43,8 @@ DrawWidget::DrawWidget(QWidget *parent) :
     showOPoint=0;
     showDigital = 0;
     radiusFlag=0;
-    spotOperation=1;//ÅĞ¶ÏÊÇ°ßµãÒÆ¶¯»¹ÊÇËõ·Å»¹ÊÇĞı×ª
-    pointNum=0;//Çå¿ÕÎ´»­Íê²Ğ°ß¼ÆÊı
+    spotOperation=1;//åˆ¤æ–­æ˜¯æ–‘ç‚¹ç§»åŠ¨è¿˜æ˜¯ç¼©æ”¾è¿˜æ˜¯æ—‹è½¬
+    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ®‹æ–‘è®¡æ•°
     spotSelectedNum=0;
     oPointJudge=0;
     oPointMoveFlag=0;
@@ -51,20 +52,20 @@ DrawWidget::DrawWidget(QWidget *parent) :
     ctrlFlag=0;
     ctrlSize=0;
 
-    //°ßµãÁ¬½Ó³öÑÕÉ«´¦Àí±äÁ¿³õÊ¼»¯£º
+    //æ–‘ç‚¹è¿æ¥å‡ºé¢œè‰²å¤„ç†å˜é‡åˆå§‹åŒ–ï¼š
     drawOk1=0,drawOk2=0,drawOk3=0,drawOk4=0;
 
 
-    ifShowSpotEdge=1;//ÉèÖÃ¿ªÊ¼µÄÊ±ºòÏÔÊ¾²»ÏÔÊ¾°ßµã±ßÔµ
+    ifShowSpotEdge=1;//è®¾ç½®å¼€å§‹çš„æ—¶å€™æ˜¾ç¤ºä¸æ˜¾ç¤ºæ–‘ç‚¹è¾¹ç¼˜
 
 
-    //³ÉÆ¬Ñ¡È¡
+    //æˆç‰‡é€‰å–
     mousePressFlag=0;
     xBegin=0,yBegin=0,xEnd=0,yEnd=0;
 
 
     selectedPoint=new(QPointF);
-    //³õÊ¼»¯°ßµãÑÕÉ«
+    //åˆå§‹åŒ–æ–‘ç‚¹é¢œè‰²
     for(int i=0;i<maxSize;i++){
         allColor.myColor[i].setRgb(255,255,255);
         allColor.index[i]=29;
@@ -81,10 +82,10 @@ DrawWidget::DrawWidget(QWidget *parent) :
     handlePointSize=10;
     //hPointLineWidth=1;
     handlePointColor=QColor(0,0,255);
-    markNum=100;//ÇúÂÊÏ¡Êè¶È
-    minResolution=30;//ÇúÂÊ°ë¾¶
+    markNum=100;//æ›²ç‡ç¨€ç–åº¦
+    minResolution=30;//æ›²ç‡åŠå¾„
 
-    AutoCADFlag=0;//³õÊ¼»¯»­²¼µÄÊ±ºò£¬¸ù¾İwindowscaleÉèÖÃ
+    AutoCADFlag=0;//åˆå§‹åŒ–ç”»å¸ƒçš„æ—¶å€™ï¼Œæ ¹æ®windowscaleè®¾ç½®
 
     path=new(QPainterPath);
     QTextCodec::setCodecForTr(QTextCodec::codecForName("System"));
@@ -94,8 +95,8 @@ DrawWidget::DrawWidget(QWidget *parent) :
 
 //    widthChange=0;
 //    heightChange=0;
-    firstFlag=0;//ÎªÁËËµÃ÷ÊÇdrawCanvasÖĞ»¹Ã»ÓĞ½«    widthChange=0;    heightChange=0;ÖÃ0
-    eventStyle=0;//Óë¸¸´°¿Ú½»»¥µÄ±äÁ¿£¬ÖØĞÂÉè»­²¼µÄÊ±ºò¿ÉÒÔÉèÎª0
+    firstFlag=0;//ä¸ºäº†è¯´æ˜æ˜¯drawCanvasä¸­è¿˜æ²¡æœ‰å°†    widthChange=0;    heightChange=0;ç½®0
+    eventStyle=0;//ä¸çˆ¶çª—å£äº¤äº’çš„å˜é‡ï¼Œé‡æ–°è®¾ç”»å¸ƒçš„æ—¶å€™å¯ä»¥è®¾ä¸º0
     addColorNum=0;
 
     QColor temp;
@@ -131,7 +132,7 @@ void DrawWidget::addCtrlSpot(){
                     //qDebug("MMMMMMMMM%d",ctrlSize);
                     break;
             }
-            else if((*oP)>spotSelectedNum){//¶Ô°ßµã½øĞĞ´Ó´óµ½Ğ¡ÅÅĞò£¬Èç¹ûÑ¡ÖĞµã±Èµ±Ç°µãĞ¡£¬Ôò²åÈëµ½µ±Ç°µãÇ°±ß
+            else if((*oP)>spotSelectedNum){//å¯¹æ–‘ç‚¹è¿›è¡Œä»å¤§åˆ°å°æ’åºï¼Œå¦‚æœé€‰ä¸­ç‚¹æ¯”å½“å‰ç‚¹å°ï¼Œåˆ™æ’å…¥åˆ°å½“å‰ç‚¹å‰è¾¹
                     spotSelectedCtrl.insert(oP,spotSelectedNum);
                     flag=1;
                     ctrlSize++;
@@ -272,35 +273,35 @@ void DrawWidget::addSpotPoint(){
     //oPoint.clear();
 
 }
-void DrawWidget::addSpecialPath(){//spotMoveÓÃ
+void DrawWidget::addSpecialPath(){//spotMoveç”¨
     list<QPointF*>::iterator oP1= oPointAll.begin();
     list<QPointF*>::iterator handleP= handlePointAll.begin();
 
     list<QPointF*>oPointTempAddSpecial;
     list<QPointF*>thePointTempAdd;
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     for(int i=1;i<spotSelectedNum;i++){//spotSelectedNum
         for(int j=1;j<spotNum[i]+1;j++){
             ++oP1;
         }
     }
 
-    //½«ÒÆ¶¯°ßµãµÄÔ­µãÑ¹Õ»µ½¼ÆËãÁ´±í
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
     for(int j=1;j<spotNum[spotSelectedNum]+1;j++){
         oPointTempAddSpecial.push_back(*oP1);
         ++oP1;
     }
 
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄ¿ØÖÆµãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹æ‰€åœ¨åŒºé—´
     for(int i=1;i<spotSelectedNum;i++){
         for(int j=1;j<2*spotNum[i]+1;j++){
             ++handleP;
         }
     }
 
-    //½«ÒÆ¶¯°ßµãµÄ¿ØÖÆµãÑ¹Õ»µ½¼ÆËãÁ´±í
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
     for(int j=1;j<2*spotNum[spotSelectedNum]+1;j++){
         thePointTempAdd.push_back(*handleP);
         ++handleP;
@@ -308,7 +309,7 @@ void DrawWidget::addSpecialPath(){//spotMoveÓÃ
 
 
 
-    //¼ÆËãÒÆ¶¯°ßµãµÄÂ·¾¶
+    //è®¡ç®—ç§»åŠ¨æ–‘ç‚¹çš„è·¯å¾„
     path=new(QPainterPath);
     oP1 = oPointTempAddSpecial.begin();
     list<QPointF*>::iterator midP =thePointTempAdd.begin();
@@ -337,7 +338,7 @@ void DrawWidget::addSpecialPath(){//spotMoveÓÃ
     path->cubicTo((**midP).x(),(**midP).y(),(**midPNext).x(),(**midPNext).y(),(**oP1).x(),(**oP1).y());
 
 
-    //½«ÒÆ¶¯°ßµãµÄÂ·¾¶ÔÚallPathÖĞÌæ»»ÎªÒÆ¶¯Ö®ºóµÄ°ßµãÂ·¾¶
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„è·¯å¾„åœ¨allPathä¸­æ›¿æ¢ä¸ºç§»åŠ¨ä¹‹åçš„æ–‘ç‚¹è·¯å¾„
     list<QPainterPath*>::iterator tempPath;
     QPainterPath *tempPathDelete;
 
@@ -365,11 +366,11 @@ void DrawWidget::addHandlePath(){
 
     //qDebug("%d",spotSelectedNum);
 
-    //ÒÆ¶¯µÄÊÇµÚÒ»¸ö¿ØÖÆµã
+    //ç§»åŠ¨çš„æ˜¯ç¬¬ä¸€ä¸ªæ§åˆ¶ç‚¹
     if(flag==4){
         count=0;
         ok=0;
-        for(int i=1;i<drawOk+1;i++){//ÏÈÕÒµ½¿ØÖÆµãËùÔÚÇø¶Î
+        for(int i=1;i<drawOk+1;i++){//å…ˆæ‰¾åˆ°æ§åˆ¶ç‚¹æ‰€åœ¨åŒºæ®µ
             for(int j=1;j<2*spotNum[i]+1;j++){
                 //qDebug("@@%f    %f",handleA.x(),handleA.y());
                 //qDebug("##%f    %f",(**oPHandle).x()/2,(**oPHandle).y()/2);
@@ -387,34 +388,34 @@ void DrawWidget::addHandlePath(){
                 break;
         }
 
-        //±éÀúÔ­µãµ½ÕÒµ½µÄÇø¶Î
+        //éå†åŸç‚¹åˆ°æ‰¾åˆ°çš„åŒºæ®µ
         oP = oPointAll.begin();
         for(int i=1;i<count;i++)
             for(int j=1;j<spotNum[i]+1;j++){
                 oP++;
             }
 
-        //±éÀú¿ØÖÆµãµ½ÕÒµ½µÄÇø¶Î
+        //éå†æ§åˆ¶ç‚¹åˆ°æ‰¾åˆ°çš„åŒºæ®µ
         oPHandle = handlePointAll.begin();
         for(int i=1;i<count;i++)
             for(int j=1;j<2*spotNum[i]+1;j++){
                 oPHandle++;
             }
 
-        //×ªÒÆÔ­µãµ½¼ÆËãÂ·¾¶µÄÁ´±í
+        //è½¬ç§»åŸç‚¹åˆ°è®¡ç®—è·¯å¾„çš„é“¾è¡¨
         //qDebug("%d  %d",count,spotNum[count]);
         for(int j=1;j<spotNum[count]+1;j++){
             oPointTemp.push_back(*oP);
             ++oP;
         }
-        //×ªÒÆ¿ØÖÆµãµ½¼ÆËãÂ·¾¶µÄÁ´±í
+        //è½¬ç§»æ§åˆ¶ç‚¹åˆ°è®¡ç®—è·¯å¾„çš„é“¾è¡¨
         //qDebug("%d  %d",count,spotNum[count]);
         for(int j=1;j<2*spotNum[count]+1;j++){
             thePoint.push_back(*oPHandle);
             ++oPHandle;
         }
 
-        //¼ÆËãÂ·¾¶
+        //è®¡ç®—è·¯å¾„
         path=new(QPainterPath);
         list<QPointF*>::iterator midP =thePoint.begin();
         oP = oPointTemp.begin();
@@ -459,12 +460,12 @@ void DrawWidget::addHandlePath(){
 
 
 
-    //ÒÆ¶¯µÄÊÇµÚ¶ş¸ö¿ØÖÆµã£¬Í¬ÉÏ
+    //ç§»åŠ¨çš„æ˜¯ç¬¬äºŒä¸ªæ§åˆ¶ç‚¹ï¼ŒåŒä¸Š
     if(flag==5){
         count=0;
         ok=0;
 
-        for(int i=1;i<drawOk+1;i++){//ÏÈÕÒµ½¿ØÖÆµãËùÔÚÇø¶Î
+        for(int i=1;i<drawOk+1;i++){//å…ˆæ‰¾åˆ°æ§åˆ¶ç‚¹æ‰€åœ¨åŒºæ®µ
             for(int j=1;j<2*spotNum[i]+1;j++){
                 if(fabs(handleB.x()-spotOriginX[spotSelectedNum]-(**oPHandle).x())<0.001&&fabs(handleB.y()-spotOriginY[spotSelectedNum]-(**oPHandle).y())<0.001){
                     ok=1;
@@ -542,7 +543,7 @@ void DrawWidget::addHandlePath(){
         return;
     }
 
-    //ÇåÀí¹¤×÷
+    //æ¸…ç†å·¥ä½œ
     //thePoint.clear();
     //oPointTemp.clear();
 }
@@ -661,7 +662,7 @@ void DrawWidget::readStation(){
         //qDebug("neibu,,,,,,:%d",handlePointAll.size());
         midWidth=tempWidth/2;
         midHeight=tempHeight/2;
-        //Í¨¹ıindex³õÊ¼»¯ÑÕÉ«
+        //é€šè¿‡indexåˆå§‹åŒ–é¢œè‰²
         for(int i=1;i<drawOk+1;i++){
             allColor.myColor[i]=iconColor[allColor.index[i]+1];
         }
@@ -686,19 +687,19 @@ void DrawWidget::caculateCanvasPath(){
 
 
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     for(int count=1;count<drawOk+1;count++){
         list<QPointF*>oPointTempAddSpecial;
         list<QPointF*>thePointTempAdd;
 
-            //½«ÒÆ¶¯°ßµãµÄÔ­µãÑ¹Õ»µ½¼ÆËãÁ´±í
+            //å°†ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
             for(int j=1;j<spotNum[count]+1;j++){
                 oPointTempAddSpecial.push_back(*oP);
                 ++oP;
             }
 
 
-            //½«ÒÆ¶¯°ßµãµÄ¿ØÖÆµãÑ¹Õ»µ½¼ÆËãÁ´±í
+            //å°†ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
             for(int j=1;j<2*spotNum[count]+1;j++){
                 thePointTempAdd.push_back(*handleP);
                 ++handleP;
@@ -706,7 +707,7 @@ void DrawWidget::caculateCanvasPath(){
 
 
 
-    //¼ÆËãÒÆ¶¯°ßµãµÄÂ·¾¶
+    //è®¡ç®—ç§»åŠ¨æ–‘ç‚¹çš„è·¯å¾„
     path=new(QPainterPath);
     list<QPointF*>::iterator oP1 = oPointTempAddSpecial.begin();
     list<QPointF*>::iterator midP =thePointTempAdd.begin();
@@ -735,7 +736,7 @@ void DrawWidget::caculateCanvasPath(){
     path->cubicTo((**midP).x(),(**midP).y(),(**midPNext).x(),(**midPNext).y(),(**oP1).x(),(**oP1).y());
 
 
-    //½«ÒÆ¶¯°ßµãµÄÂ·¾¶ÔÚallPathÖĞÌæ»»ÎªÒÆ¶¯Ö®ºóµÄ°ßµãÂ·¾¶
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„è·¯å¾„åœ¨allPathä¸­æ›¿æ¢ä¸ºç§»åŠ¨ä¹‹åçš„æ–‘ç‚¹è·¯å¾„
     allPath.push_back(path);
     }
 
@@ -756,13 +757,13 @@ void DrawWidget::caculateOneCurve(){
     use.getTraCoo(oPoint,midM,tranCoo);
     use.getThePoint(midPoint,tranCoo,thePoint);
 
-    //ÏÈ°Ñ¿ØÖÆµã½øĞĞÑ¹Õ»
+    //å…ˆæŠŠæ§åˆ¶ç‚¹è¿›è¡Œå‹æ ˆ
     list<QPointF*>::iterator oP1 = thePoint.begin();
     for(;oP1!=thePoint.end();++oP1){
         handlePointAll.push_back(*oP1);
             }
 
-    //¼ÆËã³ö¸Õ»­³ö°ßµãµÄpath
+    //è®¡ç®—å‡ºåˆšç”»å‡ºæ–‘ç‚¹çš„path
     list<QPointF*>::iterator oP;
     oP = oPoint.begin();
     list<QPointF*>::iterator midP =thePoint.begin();
@@ -791,7 +792,7 @@ void DrawWidget::caculateOneCurve(){
                               oP++;
             }
     oP=oPoint.begin();
-    //---------xiaotian  cubicTo  ¸Ä³É  lineTo
+    //---------xiaotian  cubicTo  æ”¹æˆ  lineTo
         if(saveGet.digitalFlag == 1){
             path->lineTo((**oP).x(),(**oP).y());
         }else{
@@ -803,7 +804,7 @@ void DrawWidget::caculateOneCurve(){
     //qDebug("push");
     oPoint.clear();
     thePoint.clear();
-    ///////////////////////////////////////ÇåÀíÄÚ´æ
+    ///////////////////////////////////////æ¸…ç†å†…å­˜
     list<QPointF*>::iterator tempDelete;
     QPointF *tempDeletePoint;
 
@@ -845,7 +846,7 @@ void DrawWidget::caculateAreaRatio(){
                 temp = allPath.begin();
                 count=1;
                 for(;temp!=allPath.end();++temp){
-                    ////ÕæÊµµÄµãµ½Ä³¸ö°ßµãµÄ×ø±êÏµ
+                    ////çœŸå®çš„ç‚¹åˆ°æŸä¸ªæ–‘ç‚¹çš„åæ ‡ç³»
                     x=(i-spotOriginX[count])*cos(-rotation[count]/180*PI)/stretch[count]-(j-spotOriginY[count])*sin(-rotation[count]/180*PI)/stretch[count];
                     y=(i-spotOriginX[count])*sin(-rotation[count]/180*PI)/stretch[count]+(j-spotOriginY[count])*cos(-rotation[count]/180*PI)/stretch[count];
                     tempPoint.setX(x);
@@ -865,7 +866,7 @@ void DrawWidget::caculateAreaRatio(){
         area2=(drawY*drawZ+drawX*drawY+drawY*drawZ)/(2*drawX*drawZ+2*drawY*drawZ+drawX*drawY)*100;
         area3=area1;
         //qDebug("%f",area1);
-        //µÚÒ»²¿·ÖÃæ»ı
+        //ç¬¬ä¸€éƒ¨åˆ†é¢ç§¯
         for(float i=midWidth-drawX/2+drawX/50;i<midWidth+drawX/2+0.001;i+=drawX/50){
             for(float j=midHeight-0.5*drawY-drawZ+drawZ/50;j<midHeight-0.5*drawY+0.001;j+=drawZ/50){
                 temp = allPath.begin();
@@ -884,7 +885,7 @@ void DrawWidget::caculateAreaRatio(){
                 }
             }
         }
-        //µÚÈı²¿·ÖÃæ»ı
+        //ç¬¬ä¸‰éƒ¨åˆ†é¢ç§¯
         for(float i=midWidth-drawX/2;i<midWidth+drawX/2+0.001;i+=drawX/50){
             for(float j=midHeight+0.5*drawY+drawZ/50;j<midHeight+0.5*drawY+drawZ+0.001;j+=drawZ/50){
                 temp = allPath.begin();
@@ -902,7 +903,7 @@ void DrawWidget::caculateAreaRatio(){
                 }
             }
         }
-        //µÚ¶ş²¿·ÖÃæ»ı
+        //ç¬¬äºŒéƒ¨åˆ†é¢ç§¯
         for(float i=midWidth-drawX/2-drawZ+(drawX+2*drawZ)/50;i<midWidth+drawX/2+drawZ+0.001;i+=(drawX+drawZ*2)/50){
             for(float j=midHeight-0.5*drawY+drawY/50;j<midHeight+0.5*drawY+0.001;j+=drawY/50){
                 temp = allPath.begin();
@@ -929,7 +930,7 @@ void DrawWidget::caculateAreaRatio(){
         //qDebug(" ");
 }
 void DrawWidget::clear(){
-    //ÔÚÇå³ıËùÓĞÖ®Ç°£¬±£´æÆğÀ´£¬ÒÔ±ã»ØÍË
+    //åœ¨æ¸…é™¤æ‰€æœ‰ä¹‹å‰ï¼Œä¿å­˜èµ·æ¥ï¼Œä»¥ä¾¿å›é€€
     //saveStation();
     cpyNum=0;
     widthChange=0;
@@ -1022,7 +1023,7 @@ int DrawWidget::collisonDetection(int num,float saveP[300][2]){
     int n;
     //for(int i=0;i<180;i+=18){
     int i=0;
-        for(n=1;n<num+1;n++){//¶ÔµÃµ½µÄ°ßµãµÄËùÓĞµã×ö¼ì²â
+        for(n=1;n<num+1;n++){//å¯¹å¾—åˆ°çš„æ–‘ç‚¹çš„æ‰€æœ‰ç‚¹åšæ£€æµ‹
             float x1=saveP[n][0]*cos(i/180*PI)*windowScale/4-saveP[n][1]*sin(i/180*PI)*windowScale/4;
             float y1=saveP[n][0]*sin(i/180*PI)*windowScale/4+saveP[n][1]*cos(i/180*PI)*windowScale/4;
 
@@ -1038,13 +1039,13 @@ int DrawWidget::collisonDetection(int num,float saveP[300][2]){
                 tempPoint.setY(y);
                     if(forAutoSpotP[j]->contains(tempPoint)){
                         //break;
-                        //qDebug("±»µÚ%d¸ö°ßµã°üº¬",j);
+                        //qDebug("è¢«ç¬¬%dä¸ªæ–‘ç‚¹åŒ…å«",j);
                         return 0;
                     }
             }
         }
         //if(n==num+1){
-            //qDebug("chenggongÁË");
+            //qDebug("chenggongäº†");
             return 1;
         //}
     //}
@@ -1072,11 +1073,11 @@ void DrawWidget::deleteSpot(){
                 }
                 oPointAll.erase(oP);
             }
-            //½«ÒÆ¶¯°ßµãµÄÔ­µãÑ¹Õ»µ½¼ÆËãÁ´±í
+            //å°†ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
 
 
 
-            //ÕÒµ½ÒÆ¶¯°ßµãµÄ¿ØÖÆµãËùÔÚÇø¼ä
+            //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹æ‰€åœ¨åŒºé—´
             for(int j=1;j<2*spotNum[tempNum-ii+1]+1;j++){
                 handleP= handlePointAll.begin();
                 for(int i=1;i<tempNum-ii+1;i++){
@@ -1088,7 +1089,7 @@ void DrawWidget::deleteSpot(){
             }
 
 
-            //É¾³ıÂ·¾¶ĞÅÏ¢
+            //åˆ é™¤è·¯å¾„ä¿¡æ¯
             list<QPainterPath*>::iterator tempPath;
             QPainterPath *tempPathDelete;
             tempPath=allPath.begin();
@@ -1099,7 +1100,7 @@ void DrawWidget::deleteSpot(){
             //delete tempPathDelete;
 
 
-            //É¾³ıspotµÄÆäËüĞÅÏ¢
+            //åˆ é™¤spotçš„å…¶å®ƒä¿¡æ¯
             for(int i=tempNum-ii+1;i<drawOk;i++){
                 spotNum[i]=spotNum[i+1];
                 stretch[i]=stretch[i+1];
@@ -1124,8 +1125,8 @@ void DrawWidget::deleteSpot(){
     }
     else if(spotSelectedNum){
     saveStation();
-    //ÑÕÉ«£¬index
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //é¢œè‰²ï¼Œindex
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     list<QPointF*>::iterator oP= oPointAll.begin();
     list<QPointF*>::iterator handleP= handlePointAll.begin();
     for(int j=1;j<spotNum[spotSelectedNum]+1;j++){
@@ -1137,11 +1138,11 @@ void DrawWidget::deleteSpot(){
         }
         oPointAll.erase(oP);
     }
-    //½«ÒÆ¶¯°ßµãµÄÔ­µãÑ¹Õ»µ½¼ÆËãÁ´±í
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
 
 
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄ¿ØÖÆµãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹æ‰€åœ¨åŒºé—´
     for(int j=1;j<2*spotNum[spotSelectedNum]+1;j++){
         handleP= handlePointAll.begin();
         for(int i=1;i<spotSelectedNum;i++){
@@ -1153,7 +1154,7 @@ void DrawWidget::deleteSpot(){
     }
 
 
-    //É¾³ıÂ·¾¶ĞÅÏ¢
+    //åˆ é™¤è·¯å¾„ä¿¡æ¯
     list<QPainterPath*>::iterator tempPath;
     QPainterPath *tempPathDelete;
     tempPath=allPath.begin();
@@ -1164,7 +1165,7 @@ void DrawWidget::deleteSpot(){
     //delete tempPathDelete;
 
 
-    //É¾³ıspotµÄÆäËüĞÅÏ¢
+    //åˆ é™¤spotçš„å…¶å®ƒä¿¡æ¯
     for(int i=spotSelectedNum;i<drawOk;i++){
         spotNum[i]=spotNum[i+1];
         stretch[i]=stretch[i+1];
@@ -1288,7 +1289,7 @@ void DrawWidget::drawScaleLine(QPainter &p){
 
     p.drawLine(QPointF(0,20),QPointF(this->width(),20));
 
-    //ºáÏò±ê³ß
+    //æ¨ªå‘æ ‡å°º
     float length=0;int count=0;
     while(length<this->width()){
         //qDebug("sssssssssssssssss");
@@ -1315,7 +1316,7 @@ void DrawWidget::drawScaleLine(QPainter &p){
         count++;
     }
 
-    //×İÏò±ê³ß
+    //çºµå‘æ ‡å°º
     p.drawLine(QPointF(8,0),QPointF(8,this->height()));
     float length1=0;float count1=0;
     while(length1<this->height()){
@@ -1357,7 +1358,7 @@ void DrawWidget::drawHandlePoint(QPainter &p){
 
     for(int i=1;i<drawOk+1;i++){
         thePointTempDraw.clear();
-        for(int j=1;j<2*spotNum[i]+1;j++){//·ÖÇø¶Î±éÀú¿ØÖÆµã£¬²¢½«Ã¿Ò»¶Î·Åµ½ÅĞ¶ÏÁ´±íÖĞ£¬È¥×öÅĞ¶Ï
+        for(int j=1;j<2*spotNum[i]+1;j++){//åˆ†åŒºæ®µéå†æ§åˆ¶ç‚¹ï¼Œå¹¶å°†æ¯ä¸€æ®µæ”¾åˆ°åˆ¤æ–­é“¾è¡¨ä¸­ï¼Œå»åšåˆ¤æ–­
             thePointTempDraw.push_back(*oP);
             ++oP;
         }
@@ -1379,7 +1380,7 @@ void DrawWidget::drawHandlePoint(QPainter &p){
     p.setPen(QPen(handlePointColor,1,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin));
     for(;tempN!=thePointTempDraw.end();){
         if(markFlag==2&&fabs((**temp).x()-(selectedPoint->x()-spotOriginX[i]))<0.001&&fabs((**temp).y()-(selectedPoint->y()-spotOriginY[i]))<0.001){
-            //Èç¹ûËù±éÀúµÄµã±»Ñ¡ÖĞ£¬ÇÒÎª¿ØÖÆµãÖĞµÄA¿ØÖÆµã
+            //å¦‚æœæ‰€éå†çš„ç‚¹è¢«é€‰ä¸­ï¼Œä¸”ä¸ºæ§åˆ¶ç‚¹ä¸­çš„Aæ§åˆ¶ç‚¹
             //qDebug("-----1111111111");
             p.setBrush(QBrush(QColor(205,0,255)));//p.setBrush(QBrush(QColor(255,0,0),Qt::Dense4Pattern));
             p.drawLine(**temp,**tempN);
@@ -1398,7 +1399,7 @@ void DrawWidget::drawHandlePoint(QPainter &p){
                 break;
         }
         else if(markFlag==3&&fabs((**tempN).x()-(selectedPoint->x()-spotOriginX[i]))<0.001&&fabs((**tempN).y()-(selectedPoint->y()-spotOriginY[i]))<.001){
-            //Èç¹ûËù±éÀúµÄµã±»Ñ¡ÖĞ£¬ÇÒÎª¿ØÖÆµãÖĞµÄB¿ØÖÆµã
+            //å¦‚æœæ‰€éå†çš„ç‚¹è¢«é€‰ä¸­ï¼Œä¸”ä¸ºæ§åˆ¶ç‚¹ä¸­çš„Bæ§åˆ¶ç‚¹
             //qDebug("-----2222222222");
             p.setBrush(QBrush(QColor(205,0,255)));
             p.drawLine(**temp,**tempN);
@@ -1416,7 +1417,7 @@ void DrawWidget::drawHandlePoint(QPainter &p){
             else
                 break;
         }
-        else{//ÆÕÍ¨»æµã
+        else{//æ™®é€šç»˜ç‚¹
         p.drawLine(**temp,**tempN);
         //p.setBrush(QBrush(QColor(205,0,255)));
         p.drawEllipse((**temp).x()-handlePointSize/2,(**temp).y()-handlePointSize/2,handlePointSize,handlePointSize);
@@ -1442,7 +1443,7 @@ void DrawWidget::drawHandlePoint(QPainter &p){
     p.setBrush(Qt::NoBrush);
     p.setPen(Qt::NoPen);
     p.setPen(QPen(handlePointColor,1,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin));
-    //Èç¹û×îºóÒ»¸ö¿ØÖÆµã±»Ñ¡ÖĞ
+    //å¦‚æœæœ€åä¸€ä¸ªæ§åˆ¶ç‚¹è¢«é€‰ä¸­
     if(markFlag==2&&fabs((**temp).x()-(selectedPoint->x()-spotOriginX[i]))<0.001&&fabs((**temp).y()-(selectedPoint->y()-spotOriginY[i]))<.001){
         //qDebug("---------33333333333");
         p.setBrush(QBrush(QColor(205,0,255)));
@@ -1497,7 +1498,7 @@ void DrawWidget::drawBackground(QPainter &p){
     //p.drawPath(*backRect);
     //int oX=width()/2;
     //int oY=height()/2;
-    //*path5=backRect->intersected(*path4);//»æÖÆ»­²¼
+    //*path5=backRect->intersected(*path4);//ç»˜åˆ¶ç”»å¸ƒ
     //QBrush f(backGroundColor);
     //p.setBrush(f);
     //p.drawPath(*path5);
@@ -1582,7 +1583,7 @@ void DrawWidget::drawEdgeLine(QPainter &p){
 }
 
 void DrawWidget::drawCanvas(QPainter &p){
-    if(oPoint.empty()&&oPointAll.empty()&&!firstFlag){//µÚÒ»´ÎÉèÖÃ»­²¼ÓÃ,firstFlag±íÊ¾ÊÇÎª0±íÊ¾ÊÇµÚÒ»´Î»­
+    if(oPoint.empty()&&oPointAll.empty()&&!firstFlag){//ç¬¬ä¸€æ¬¡è®¾ç½®ç”»å¸ƒç”¨,firstFlagè¡¨ç¤ºæ˜¯ä¸º0è¡¨ç¤ºæ˜¯ç¬¬ä¸€æ¬¡ç”»
         firstFlag=1;
         midWidth=width()/2;
         midHeight=height()/2;
@@ -1595,7 +1596,7 @@ void DrawWidget::drawCanvas(QPainter &p){
     p.setPen(Qt::NoPen);
     p.setPen(QPen(Qt::black,1/windowScale,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin));
 
-    //---------xiaotian    ÉèÖÃ±³¾°É«
+    //---------xiaotian    è®¾ç½®èƒŒæ™¯è‰²
     p.setBrush(QBrush(backGroundColor));
 
     QPainterPath *preCanvasPath;
@@ -1660,13 +1661,13 @@ void DrawWidget::drawMark(QPainter &p1){
     float CurvatureX1,CurvatureY1,CurvatureX2,CurvatureY2,Curvature,Curvature1,Curvature2;
     p1.setPen(QPen(QColor(0,200,200)));
 
-    //´óÑ­»·ÓÃ
+    //å¤§å¾ªç¯ç”¨
     list<QPointF*>::iterator oP;
     oP = oPointAll.begin();
     list<QPointF*>::iterator oPH ;
     oPH = handlePointAll.begin();
 
-    //Ğ¡Ñ­»·ÓÃ
+    //å°å¾ªç¯ç”¨
     list<QPointF*>::iterator oP1;
     list<QPointF*>::iterator oPH1 ;
 
@@ -1676,7 +1677,7 @@ void DrawWidget::drawMark(QPainter &p1){
         list<QPointF*>oPointTemp;
         list<QPointF*>thePointTemp;
 
-        //°Ñµã·Åµ½Á´±íÖĞ
+        //æŠŠç‚¹æ”¾åˆ°é“¾è¡¨ä¸­
         for(int j=1;j<spotNum[i]+1;j++){
         oPointTemp.push_back(*oP);
         thePointTemp.push_back(*oPH);
@@ -1693,7 +1694,7 @@ void DrawWidget::drawMark(QPainter &p1){
     p1.rotate(rotation[i]);
     p1.scale(stretch[i],stretch[i]);
 
-    //¼ÆËã×îºóÒ»¸öµãÖ®Ç°µÄÇúÂÊ°ë¾¶
+    //è®¡ç®—æœ€åä¸€ä¸ªç‚¹ä¹‹å‰çš„æ›²ç‡åŠå¾„
     for(;oP1!=oPointTemp.end();++oP1){
     p[0][0]=(**oP1).x();
     p[0][1]=(**oP1).y();
@@ -1742,7 +1743,7 @@ void DrawWidget::drawMark(QPainter &p1){
     //temp++;
     }
 
-    //¼ÆËã×îºóÒ»¸öµãµÄÇúÂÊ°ë¾¶
+    //è®¡ç®—æœ€åä¸€ä¸ªç‚¹çš„æ›²ç‡åŠå¾„
     --oP1;
     p[0][0]=(**oP1).x();
     p[0][1]=(**oP1).y();
@@ -1783,7 +1784,7 @@ void DrawWidget::drawMark(QPainter &p1){
     p1.rotate(-rotation[i]);
     p1.translate(-spotOriginX[i],-spotOriginY[i]);
 
-    }//Ñ­»·°ßµã¸öÊı
+    }//å¾ªç¯æ–‘ç‚¹ä¸ªæ•°
     p1.setPen(Qt::NoPen);
 }
 
@@ -1792,7 +1793,7 @@ void DrawWidget::drawSpot(QPainter &p){
     if(ctrlSize){
         p.setPen(QPen(spotLineColor,8*spotLineWidth/windowScale,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin));
         //p.setPen(Qt::NoPen);
-        int tempCount=1;//ÓÃÀ´ÅĞ¶ÏÏÖÔÚÑ­»·µ½ÄÄ¸ö°ßµã
+        int tempCount=1;//ç”¨æ¥åˆ¤æ–­ç°åœ¨å¾ªç¯åˆ°å“ªä¸ªæ–‘ç‚¹
         list<int>::iterator ctrlOP=spotSelectedCtrl.begin();
         for(;ctrlOP!=spotSelectedCtrl.end();ctrlOP++){
             while(tempCount<*ctrlOP){
@@ -1834,7 +1835,7 @@ void DrawWidget::drawSpot(QPainter &p){
 
     p.setPen(Qt::NoPen);
     p.setBrush(Qt::NoBrush);
-    //»æÖÆËùÓĞ°ßµã£¬ÉÏ±ßÊÇ»æÖÆÑ¡ÖĞ°ßµã±ßÔµ
+    //ç»˜åˆ¶æ‰€æœ‰æ–‘ç‚¹ï¼Œä¸Šè¾¹æ˜¯ç»˜åˆ¶é€‰ä¸­æ–‘ç‚¹è¾¹ç¼˜
     list<QPainterPath*>::iterator temp = allPath.begin();
     int count=1;
     int t=1;
@@ -1873,7 +1874,7 @@ void DrawWidget::drawDigital(QPainter &p){
         if(showOPoint)
             drawOPoint(p);
 
-        if(oPoint.size()>1){//»æÖÆ¹ı³ÌÖ±Ïß
+        if(oPoint.size()>1){//ç»˜åˆ¶è¿‡ç¨‹ç›´çº¿
                 drawProcessLine(p);
             }
 
@@ -1883,7 +1884,7 @@ void DrawWidget::drawDigital(QPainter &p){
 
             if(showOPoint){
                 drawOPoint(p);
-                drawOrign(p);//»æÖÆ°ßµãÖĞ¼äÄÇ¸öµã
+                drawOrign(p);//ç»˜åˆ¶æ–‘ç‚¹ä¸­é—´é‚£ä¸ªç‚¹
             }
             if(radiusFlag){
                     drawMark(p);
@@ -1913,31 +1914,31 @@ void DrawWidget::getAllColor(spotColorAll&allColorF,int &backGroundColorIndexF,Q
 
 void DrawWidget::getAutoCAD(){
 
-    //int num[5][100],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;
-    int num[5][1000],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;
+    //int num[5][100],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;
+    int num[5][1000],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;
 
 
-    //µÚÒ»²¿·Ö
+    //ç¬¬ä¸€éƒ¨åˆ†
     judgeIntersection(num,0,&hasNum,midWidth-drawX/2,midHeight-drawY/2-drawZ,drawX,drawZ);
     getThePoint(num,hasNum,0);
     getThePointAll(num,hasNum,0);
 
-    //µÚ¶ş²¿·Ö
+    //ç¬¬äºŒéƒ¨åˆ†
     judgeIntersection(num,1,&hasNum,midWidth-drawX/2-drawZ,midHeight-drawY/2,drawZ,drawY);
     getThePoint(num,hasNum,1);
     getThePointAll(num,hasNum,1);
 
-    //µÚÈı²¿·Ö
+    //ç¬¬ä¸‰éƒ¨åˆ†
     judgeIntersection(num,2,&hasNum,midWidth-drawX/2,midHeight-drawY/2,drawX,drawY);
     getThePoint(num,hasNum,2);
     getThePointAll(num,hasNum,2);
 
-    //µÚËÄ²¿·Ö
+    //ç¬¬å››éƒ¨åˆ†
     judgeIntersection(num,3,&hasNum,midWidth+drawX/2,midHeight-drawY/2,drawZ,drawY);
     getThePoint(num,hasNum,3);
     getThePointAll(num,hasNum,3);
 
-    //µÚÎå²¿·Ö
+    //ç¬¬äº”éƒ¨åˆ†
     judgeIntersection(num,4,&hasNum,midWidth-drawX/2,midHeight+drawY/2,drawX,drawZ);
     getThePoint(num,hasNum,4);
     getThePointAll(num,hasNum,4);
@@ -1949,9 +1950,9 @@ void DrawWidget::getAutoCAD(){
 void DrawWidget::getThePoint(int (*num)[1000],int hasNum,int area){
     list<QPointF*>::iterator oP;
     float x,y;
-    QPointF *tempP[5000][100];//×î¶àÓĞ5000¸ö°ßµã,5¸öÇøÓò,Ã¿¸ö°ßµã×î¶àÓĞ100¸öµã
+    QPointF *tempP[5000][100];//æœ€å¤šæœ‰5000ä¸ªæ–‘ç‚¹,5ä¸ªåŒºåŸŸ,æ¯ä¸ªæ–‘ç‚¹æœ€å¤šæœ‰100ä¸ªç‚¹
     QPointF *temp;
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     for(int a=0;a<hasNum;a++){
         oP= oPointAll.begin();
         for(int i=1;i<num[area][a];i++){//spotSelectedNum
@@ -1959,7 +1960,7 @@ void DrawWidget::getThePoint(int (*num)[1000],int hasNum,int area){
                 ++oP;
             }
         }
-        //½«°ßµãµÄÔ­µã·ÅÈëÊı×é,Ô­µãÊÇ´ÓÏÂ±í1¿ªÊ¼·ÅµÄ
+        //å°†æ–‘ç‚¹çš„åŸç‚¹æ”¾å…¥æ•°ç»„,åŸç‚¹æ˜¯ä»ä¸‹è¡¨1å¼€å§‹æ”¾çš„
         for(int j=1;j<spotNum[num[area][a]]+1;j++){
             x=(**oP).x()*cos(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale-(**oP).y()*sin(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale;
             y=(**oP).x()*sin(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale+(**oP).y()*cos(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale;
@@ -2033,9 +2034,9 @@ void DrawWidget::getThePoint(int (*num)[1000],int hasNum,int area){
 void DrawWidget::getThePointAll(int (*num)[1000],int hasNum,int area){
     list<QPointF*>::iterator oP;
     float x,y;
-    QPointF *tempP[5000][100];//×î¶àÓĞ5000¸ö°ßµã,5¸öÇøÓò,Ã¿¸ö°ßµã×î¶àÓĞ100¸öµã
+    QPointF *tempP[5000][100];//æœ€å¤šæœ‰5000ä¸ªæ–‘ç‚¹,5ä¸ªåŒºåŸŸ,æ¯ä¸ªæ–‘ç‚¹æœ€å¤šæœ‰100ä¸ªç‚¹
     QPointF *temp;
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     for(int a=0;a<hasNum;a++){
         oP= oPointAll.begin();
         for(int i=1;i<num[area][a];i++){//spotSelectedNum
@@ -2043,7 +2044,7 @@ void DrawWidget::getThePointAll(int (*num)[1000],int hasNum,int area){
                 ++oP;
             }
         }
-        //½«°ßµãµÄÔ­µã·ÅÈëÊı×é,Ô­µãÊÇ´ÓÏÂ±í1¿ªÊ¼·ÅµÄ
+        //å°†æ–‘ç‚¹çš„åŸç‚¹æ”¾å…¥æ•°ç»„,åŸç‚¹æ˜¯ä»ä¸‹è¡¨1å¼€å§‹æ”¾çš„
         for(int j=1;j<spotNum[num[area][a]]+1;j++){
             x=(**oP).x()*cos(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale-(**oP).y()*sin(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale;
             y=(**oP).x()*sin(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale+(**oP).y()*cos(rotation[num[area][a]]/180*PI)*stretch[num[area][a]]/windowScale;
@@ -2164,7 +2165,7 @@ int DrawWidget::handleSelected(){
                           y=(**handleSelectedA).x()*sin(rotation[i]/180*PI)*stretch[i]+(**handleSelectedA).y()*cos(rotation[i]/180*PI)*stretch[i]+spotOriginY[i]-handlePointSize/2*stretch[i];
                           //cPath->addEllipse(((**handleSelectedA).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedA).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
                           cPath->addEllipse(x,y,handlePointSize*stretch[i],handlePointSize*stretch[i]);
-                          if(cPath->contains(*currentPoint)){//Èç¹ûifÎªÕæ,ÔğµãÖØºÏ
+                          if(cPath->contains(*currentPoint)){//å¦‚æœifä¸ºçœŸ,è´£ç‚¹é‡åˆ
                                   flag=4;
                                   markFlag=2;
                                   //qDebug("11111111");
@@ -2192,7 +2193,7 @@ int DrawWidget::handleSelected(){
                           //cPath->addEllipse(((**handleSelectedA).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedA).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
                           cPath->addEllipse(x,y,handlePointSize*stretch[i],handlePointSize*stretch[i]);
                           //cPath->addEllipse(((**handleSelectedB).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedB).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
-                          if(cPath->contains(*currentPoint)){//Èç¹ûifÎªÕæ,ÔğµãÖØºÏ
+                          if(cPath->contains(*currentPoint)){//å¦‚æœifä¸ºçœŸ,è´£ç‚¹é‡åˆ
                                   flag=5;
                                   markFlag=3;
                                     //qDebug("22222222222");
@@ -2232,7 +2233,7 @@ int DrawWidget::handleSelected(){
        //cPath->addEllipse(((**handleSelectedA).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedA).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
        cPath->addEllipse(x,y,handlePointSize*stretch[i],handlePointSize*stretch[i]);
        //cPath->addEllipse(((**handleSelectedA).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedA).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
-       if(cPath->contains(*currentPoint)){//Èç¹ûifÎªÕæ,ÔğµãÖØºÏ
+       if(cPath->contains(*currentPoint)){//å¦‚æœifä¸ºçœŸ,è´£ç‚¹é‡åˆ
                flag=4;
                markFlag=2;//qDebug("333333333");
                spotSelectedNum=i;
@@ -2257,7 +2258,7 @@ int DrawWidget::handleSelected(){
        //cPath->addEllipse(((**handleSelectedA).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedA).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
        cPath->addEllipse(x,y,handlePointSize*stretch[i],handlePointSize*stretch[i]);
        //cPath->addEllipse(((**handleSelectedB).x()-handlePointSize/2)/2+spotOriginX[i],((**handleSelectedB).y()-handlePointSize/2)/2+spotOriginY[i],handlePointSize,handlePointSize);
-       if(cPath->contains(*currentPoint)){//Èç¹ûifÎªÕæ,ÔğµãÖØºÏ
+       if(cPath->contains(*currentPoint)){//å¦‚æœifä¸ºçœŸ,è´£ç‚¹é‡åˆ
                flag=5;
                markFlag=3;//qDebug("4444444444");
                spotSelectedNum=i;
@@ -2328,13 +2329,13 @@ void DrawWidget::getAreaRatio(float *temp){
 
 void DrawWidget::getFiveImage(){
     if(fabs(windowScale-1)<0.001){
-    //int num[5][100],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;//Îå¸öÇøÓò£¬Ã¿¸öÇøÓò×î¶àÓĞ200¸öµã
-    int num[5][1000],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;//Îå¸öÇøÓò£¬Ã¿¸öÇøÓò×î¶àÓĞ1000¸öµã
+    //int num[5][100],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;//äº”ä¸ªåŒºåŸŸï¼Œæ¯ä¸ªåŒºåŸŸæœ€å¤šæœ‰200ä¸ªç‚¹
+    int num[5][1000],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;//äº”ä¸ªåŒºåŸŸï¼Œæ¯ä¸ªåŒºåŸŸæœ€å¤šæœ‰1000ä¸ªç‚¹
     list<QPainterPath*>::iterator tempPath;
     float oX,oY;
     QPen pen(backGroundColor,0,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin);
 
-    //µÚÒ»¸±Í¼
+    //ç¬¬ä¸€å‰¯å›¾
     judgeIntersection(num,0,&hasNum,midWidth-drawX/2,midHeight-drawY/2-drawZ,drawX,drawZ);
     QPixmap pix1(drawX,drawZ);
     QPainter p1(&pix1);
@@ -2354,7 +2355,7 @@ void DrawWidget::getFiveImage(){
         //qDebug("jiaodu: %f",rotation[num[0][i]]);
         //qDebug("!!!!!!!!!%f",stretch[num[0][i]]/windowScale);
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[0][i];j++){
             tempPath++;
@@ -2373,7 +2374,7 @@ void DrawWidget::getFiveImage(){
     pix1.save("../draw/image/1.png");
 
 
-    //µÚ¶ş·ùÍ¼
+    //ç¬¬äºŒå¹…å›¾
     judgeIntersection(num,1,&hasNum,midWidth-drawX/2-drawZ,midHeight-drawY/2,drawZ,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix2(drawZ,drawY);
@@ -2396,7 +2397,7 @@ void DrawWidget::getFiveImage(){
 
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[1][i];j++){
             tempPath++;
@@ -2415,7 +2416,7 @@ void DrawWidget::getFiveImage(){
     pix2.save("../draw/image/2.png");
 
 
-    //µÚÈı·ùÍ¼
+    //ç¬¬ä¸‰å¹…å›¾
     judgeIntersection(num,2,&hasNum,midWidth-drawX/2,midHeight-drawY/2,drawX,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix3(drawX,drawY);
@@ -2438,7 +2439,7 @@ void DrawWidget::getFiveImage(){
         p3.rotate(rotation[num[2][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[2][i];j++){
             tempPath++;
@@ -2461,7 +2462,7 @@ void DrawWidget::getFiveImage(){
 
 
 
-    //µÚËÄ·ùÍ¼
+    //ç¬¬å››å¹…å›¾
     judgeIntersection(num,3,&hasNum,midWidth+drawX/2,midHeight-drawY/2,drawZ,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix4(drawZ,drawY);
@@ -2483,7 +2484,7 @@ void DrawWidget::getFiveImage(){
         p4.rotate(rotation[num[3][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[3][i];j++){
             tempPath++;
@@ -2504,7 +2505,7 @@ void DrawWidget::getFiveImage(){
 
 
 
-    //µÚÎå·ùÍ¼
+    //ç¬¬äº”å¹…å›¾
     judgeIntersection(num,4,&hasNum,midWidth-drawX/2,midHeight+drawY/2,drawX,drawZ);
     //qDebug("%d",hasNum);
     QPixmap pix5(drawX,drawZ);
@@ -2526,7 +2527,7 @@ void DrawWidget::getFiveImage(){
         p5.rotate(rotation[num[4][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[4][i];j++){
             tempPath++;
@@ -2546,8 +2547,8 @@ void DrawWidget::getFiveImage(){
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("µ±Ç°Ëõ·Å±ÈÀı±ØĞëÎª1        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("å½“å‰ç¼©æ”¾æ¯”ä¾‹å¿…é¡»ä¸º1        "));
         msgBox.setMinimumSize(200,100);
         msgBox.exec();
     }
@@ -2559,10 +2560,10 @@ void DrawWidget::getSpotPoint(){
     if(AutoCADFlag){
     float saveP[300][2];
     int num;
-    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
 
-    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
     int areaCount=areaGet%5+1;//qDebug("*******%d",areaCount);
     int tempX=drawX*windowScale,tempY=drawY*windowScale;
@@ -2633,7 +2634,7 @@ void DrawWidget::getSpotPoint(){
     stretch[drawOk]=windowScale/4;
     rotation[drawOk]=0;
 
-    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
     QPointF *tempPoint;
     oPoint.clear();
     for(int t=1;t<num+1;t++){
@@ -2643,7 +2644,7 @@ void DrawWidget::getSpotPoint(){
         oPoint.push_back(tempPoint);
         oPointAll.push_back(tempPoint);
             }
-    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
     update();
     eventStyle=1;
     emit ChildWindowEvent();
@@ -2652,10 +2653,10 @@ void DrawWidget::getSpotPoint(){
     else{
         float saveP[300][2];
         int num;
-        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
 
-        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
         int tempX=drawX*windowScale,tempY=drawY*windowScale;
         int ranX,ranY;
@@ -2675,7 +2676,7 @@ void DrawWidget::getSpotPoint(){
         stretch[drawOk]=windowScale/4;
         rotation[drawOk]=0;
 
-        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
         QPointF *tempPoint;
         oPoint.clear();
         for(int t=1;t<num+1;t++){
@@ -2685,7 +2686,7 @@ void DrawWidget::getSpotPoint(){
             oPoint.push_back(tempPoint);
             oPointAll.push_back(tempPoint);
                 }
-        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         update();
         eventStyle=1;
         emit ChildWindowEvent();
@@ -2704,17 +2705,17 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 //    update();
     getEdgePoint();
 
-//    //·ÖÈı¸öÇøÓòËæ»ú°ßµã£¬ÉÏÖĞÏÂ
+//    //åˆ†ä¸‰ä¸ªåŒºåŸŸéšæœºæ–‘ç‚¹ï¼Œä¸Šä¸­ä¸‹
 
 
 
-    //×î×ó±ß²¿·Ö
+    //æœ€å·¦è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX+2*drawZ;w+=100){
     for(int w=1;w<drawZ;w+=num1/*90*//*80*/){
         for(int h=20;h<drawY-50;h+=num2/*80*//*70*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale-drawZ*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -2725,7 +2726,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -2735,15 +2736,15 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
-////Ô­À´µÄ80Îª100£¬40Îª50
+////åŸæ¥çš„80ä¸º100ï¼Œ40ä¸º50
 //    for(int w=1;w<drawZ;w+=100){
 //        for(int h=50;h<drawY-50;h+=100){
-//            saveGet.readSpotPoint(2,&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//            saveGet.readSpotPoint(2,&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //            spotOriginX[drawOk]=midWidth-drawX/2*windowScale-drawZ*windowScale+w*windowScale+50*windowScale;
 //            spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+50*windowScale;
@@ -2754,7 +2755,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 //            stretch[drawOk]=windowScale/4;
 //            rotation[drawOk]=0;
 
-//            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //            QPointF *tempPoint;
 //            oPoint.clear();
 //            for(int t=1;t<num+1;t++){
@@ -2764,16 +2765,16 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 //                oPoint.push_back(tempPoint);
 //                oPointAll.push_back(tempPoint);
 //                    }
-//            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //        }
 //    }
 
-//×îÓÒ±ß²¿·Ö
+//æœ€å³è¾¹éƒ¨åˆ†
     for(int w=1;w<drawZ;w+=num1/*90*//*80*/){
         for(int h=20;h<drawY-50;h+=num2/*80*//*70*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth+drawX/2*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -2784,7 +2785,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -2794,7 +2795,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
 
@@ -2802,11 +2803,11 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 
 
 
-        //×îÉÏ±ß²¿·Ö
+        //æœ€ä¸Šè¾¹éƒ¨åˆ†
         //for(int w=1;w<drawX;w+=100){
         for(int w=50;w<drawX-50;w+=num1/*90*//*80*/){
             for(int h=1;h<drawZ;h+=num2/*80*//*70*/){
-                //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+                //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
                 list<QPainterPath*>::iterator temp = allPath.end();
                 temp--;
                 int count=allPath.size();
@@ -2833,9 +2834,9 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
                 }
 
         if(shouldFlag){
-        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
         spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
         spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale+5*windowScale;
@@ -2846,7 +2847,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
         stretch[drawOk]=windowScale/4;
         rotation[drawOk]=0;
 
-        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
         QPointF *tempPoint;
         oPoint.clear();
         for(int t=1;t<num+1;t++){
@@ -2856,7 +2857,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
             oPoint.push_back(tempPoint);
             oPointAll.push_back(tempPoint);
                 }
-        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                 }
 //        else{qDebug("bu hua  bu hua  bu hua  bu hua  bu hua  ");
 //        }
@@ -2864,10 +2865,10 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
         }
 
 
-//ÖĞ¼ä²¿·Ö
+//ä¸­é—´éƒ¨åˆ†
     for(int w=1;w<drawX;w+=num1/*90*//*80*/){
         for(int h=1;h<drawY;h+=num2/*80*//*70*/){
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -2896,9 +2897,9 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -2909,7 +2910,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -2919,17 +2920,17 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
 
-//×îÏÂ±ß²¿·Ö
+//æœ€ä¸‹è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX;w+=100){
     for(int w=50;w<drawX-50;w+=num1/*90*//*80*/){
         for(int h=1;h<drawZ;h+=num2/*80*//*70*/){
 
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -2958,9 +2959,9 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -2971,7 +2972,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -2981,7 +2982,7 @@ void DrawWidget::getCanvasPoint(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
@@ -2989,10 +2990,10 @@ update();
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
         msgBox.setMinimumSize(200,100);
-       //QMessageBox::about(this,tr("ÌáÊ¾ĞÅÏ¢"),tr("¸üĞÂ³É¹¦"));
+       //QMessageBox::about(this,tr("æç¤ºä¿¡æ¯"),tr("æ›´æ–°æˆåŠŸ"));
         msgBox.exec();
         return;
     }
@@ -3008,37 +3009,37 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
     //getCanvasBigPoint();
 //    update();
 
-    //·Ö²¼±ßÔµµÄµã
+    //åˆ†å¸ƒè¾¹ç¼˜çš„ç‚¹
     getEdgePoint();
 
-//    //·ÖÈı¸öÇøÓòËæ»ú°ßµã£¬ÉÏÖĞÏÂ
+//    //åˆ†ä¸‰ä¸ªåŒºåŸŸéšæœºæ–‘ç‚¹ï¼Œä¸Šä¸­ä¸‹
 
 
 
-    //×î×ó±ß²¿·Ö
+    //æœ€å·¦è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX+2*drawZ;w+=100){
     for(int w=1;w<drawZ;w+=num1/*100*/){
         for(int h=20;h<drawY-50;h+=num2/*100*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale-drawZ*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
 
             //qDebug("shhhhhhhhhhhhhhhhhhhhhhhhh:%f",windowScale);
 
-            //Õâ¸öµØ·½ÖĞĞÄµãÊÇ°´ÕÕµ±Ç°Ó¦¸Ã»æÖÆµÄÎ»ÖÃÉè¶¨
+            //è¿™ä¸ªåœ°æ–¹ä¸­å¿ƒç‚¹æ˜¯æŒ‰ç…§å½“å‰åº”è¯¥ç»˜åˆ¶çš„ä½ç½®è®¾å®š
             spotOriginOX[drawOk]=spotOriginX[drawOk]-midWidth;
             spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
 
             spotOriginPOX[drawOk]=spotOriginOX[drawOk];
             spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-            stretch[drawOk]=windowScale/4;//°ßµãÈë¿âµÄÊ±ºòÊÇ°´ÕÕ4Ã×ËãµÄ£¬ËõĞ¡ËÄ±¶ÕıºÃÊÇ100£¬¼´°ßµã´óĞ¡1Ã×
+            stretch[drawOk]=windowScale/4;//æ–‘ç‚¹å…¥åº“çš„æ—¶å€™æ˜¯æŒ‰ç…§4ç±³ç®—çš„ï¼Œç¼©å°å››å€æ­£å¥½æ˜¯100ï¼Œå³æ–‘ç‚¹å¤§å°1ç±³
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3048,18 +3049,18 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
 
 
-//×îÓÒ±ß²¿·Ö
+//æœ€å³è¾¹éƒ¨åˆ†
     for(int w=1;w<drawZ;w+=num1/*100*/){
         for(int h=20;h<drawY-50;h+=num2/*100*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth+drawX/2*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -3070,7 +3071,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3080,7 +3081,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
 
@@ -3088,11 +3089,11 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
 
 
 
-        //×îÉÏ±ß²¿·Ö
+        //æœ€ä¸Šè¾¹éƒ¨åˆ†
         //for(int w=1;w<drawX;w+=100){
         for(int w=50;w<drawX-50;w+=num1/*100*/){//120
             for(int h=1;h<drawZ;h+=num2/*100*/){
-                //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+                //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
                 list<QPainterPath*>::iterator temp = allPath.end();
                 temp--;
                 int count=allPath.size();
@@ -3119,10 +3120,10 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
                 }
 
         if(shouldFlag){
-        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
         debugNum++;
-        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
         spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
         spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale+5*windowScale;
@@ -3133,7 +3134,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
         stretch[drawOk]=windowScale/4;
         rotation[drawOk]=0;
 
-        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
         QPointF *tempPoint;
         oPoint.clear();
         for(int t=1;t<num+1;t++){
@@ -3143,7 +3144,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
             oPoint.push_back(tempPoint);
             oPointAll.push_back(tempPoint);
                 }
-        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                 }
 //        else{qDebug("bu hua  bu hua  bu hua  bu hua  bu hua  ");
 //        }
@@ -3151,10 +3152,10 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
         }
 
 
-//ÖĞ¼ä²¿·Ö
+//ä¸­é—´éƒ¨åˆ†
     for(int w=60;w<drawX;w+=num1/*100*/){
         for(int h=1;h<drawY;h+=num2/*100*/){
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -3183,11 +3184,11 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
 
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -3198,7 +3199,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3208,17 +3209,17 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
 
-//×îÏÂ±ß²¿·Ö
+//æœ€ä¸‹è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX;w+=100){
     for(int w=50;w<drawX-50;w+=num1/*100*/){
         for(int h=1;h<drawZ;h+=num2/*100*/){
 
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -3247,10 +3248,10 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -3261,7 +3262,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3271,7 +3272,7 @@ void DrawWidget::getCanvasPointS(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
@@ -3279,10 +3280,10 @@ update();
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
         msgBox.setMinimumSize(200,100);
-       //QMessageBox::about(this,tr("ÌáÊ¾ĞÅÏ¢"),tr("¸üĞÂ³É¹¦"));
+       //QMessageBox::about(this,tr("æç¤ºä¿¡æ¯"),tr("æ›´æ–°æˆåŠŸ"));
         msgBox.exec();
         return;
     }
@@ -3298,17 +3299,17 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
     //    update();
     getEdgePoint();
 
-//    //·ÖÈı¸öÇøÓòËæ»ú°ßµã£¬ÉÏÖĞÏÂ
+//    //åˆ†ä¸‰ä¸ªåŒºåŸŸéšæœºæ–‘ç‚¹ï¼Œä¸Šä¸­ä¸‹
 
 
 
-    //×î×ó±ß²¿·Ö
+    //æœ€å·¦è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX+2*drawZ;w+=100){
     for(int w=1;w<drawZ;w+=num1/*100*/){
         for(int h=20;h<drawY-50;h+=num2/*90*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale-drawZ*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -3319,7 +3320,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3329,17 +3330,17 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
 
 
-//×îÓÒ±ß²¿·Ö
+//æœ€å³è¾¹éƒ¨åˆ†
     for(int w=1;w<drawZ;w+=num1/*100*/){
         for(int h=20;h<drawY-50;h+=num2/*90*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth+drawX/2*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -3350,7 +3351,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3360,7 +3361,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
     }
 
@@ -3368,11 +3369,11 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
 
 
 
-        //×îÉÏ±ß²¿·Ö
+        //æœ€ä¸Šè¾¹éƒ¨åˆ†
         //for(int w=1;w<drawX;w+=100){
         for(int w=50;w<drawX-50;w+=num1/*120*/){
             for(int h=1;h<drawZ;h+=num2/*120*/){
-                //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+                //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
                 list<QPainterPath*>::iterator temp = allPath.end();
                 temp--;
                 int count=allPath.size();
@@ -3399,10 +3400,10 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
                 }
 
         if(shouldFlag){
-        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
         debugNum++;
-        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
         spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
         spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale+5*windowScale;
@@ -3413,7 +3414,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
         stretch[drawOk]=windowScale/4;
         rotation[drawOk]=0;
 
-        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
         QPointF *tempPoint;
         oPoint.clear();
         for(int t=1;t<num+1;t++){
@@ -3423,7 +3424,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
             oPoint.push_back(tempPoint);
             oPointAll.push_back(tempPoint);
                 }
-        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                 }
 //        else{qDebug("bu hua  bu hua  bu hua  bu hua  bu hua  ");
 //        }
@@ -3431,10 +3432,10 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
         }
 
 
-//ÖĞ¼ä²¿·Ö
+//ä¸­é—´éƒ¨åˆ†
     for(int w=60;w<drawX-60;w+=num1/*100*/){
         for(int h=60;h<drawY;h+=num2/*120*/){
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -3463,10 +3464,10 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -3477,7 +3478,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3487,17 +3488,17 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
 
-//×îÏÂ±ß²¿·Ö
+//æœ€ä¸‹è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX;w+=100){
     for(int w=50;w<drawX-50;w+=num1/*120*/){
         for(int h=1;h<drawZ;h+=num2/*120*/){
 
-            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
             list<QPainterPath*>::iterator temp = allPath.end();
             temp--;
             int count=allPath.size();
@@ -3526,10 +3527,10 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
 
 
             if(shouldFlag){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -3540,7 +3541,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
             stretch[drawOk]=windowScale/4;
             rotation[drawOk]=0;
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
             QPointF *tempPoint;
             oPoint.clear();
             for(int t=1;t<num+1;t++){
@@ -3550,7 +3551,7 @@ void DrawWidget::getCanvasPointT(int num1,int num2){
                 oPoint.push_back(tempPoint);
                 oPointAll.push_back(tempPoint);
                     }
-            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
         }
     }
@@ -3558,10 +3559,10 @@ update();
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
         msgBox.setMinimumSize(200,100);
-       //QMessageBox::about(this,tr("ÌáÊ¾ĞÅÏ¢"),tr("¸üĞÂ³É¹¦"));
+       //QMessageBox::about(this,tr("æç¤ºä¿¡æ¯"),tr("æ›´æ–°æˆåŠŸ"));
         msgBox.exec();
         return;
     }
@@ -3571,7 +3572,7 @@ update();
 
 
 
-//-----------xiaotian    ²âÊÔÑÕÉ«·ÖÅäÓë°ßµãÉú³É
+//-----------xiaotian    æµ‹è¯•é¢œè‰²åˆ†é…ä¸æ–‘ç‚¹ç”Ÿæˆ
 int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
     saveGet.digitalFlag = 1;
     int spotReadNum;
@@ -3592,7 +3593,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
         float spotHeigh = 0;
         string mid = "";
 
-        //×îÉÏ±ß²¿·Ö
+        //æœ€ä¸Šè¾¹éƒ¨åˆ†
         float w=spotWidth/2.0;
         float h=spotHeigh/2.0;
         float preWidth = 0.0;
@@ -3604,7 +3605,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
         int k = 0;
 
 
-        //----------xiaotian    »­²¼µÄ¶şÎ¬¾ØÕóÊı×é
+        //----------xiaotian    ç”»å¸ƒçš„äºŒç»´çŸ©é˜µæ•°ç»„
         int upRowNum = 0;
         int upColNum = 0;
         upRowNum = drawZ/10;
@@ -3613,15 +3614,15 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
         int up[upRowNum][upColNum];
 
 
-        //ÉÏ±ß
-        //³õÊ¼»¯ÉÏ»­²¼µÄ¶şÎ¬Êı×é¡£
+        //ä¸Šè¾¹
+        //åˆå§‹åŒ–ä¸Šç”»å¸ƒçš„äºŒç»´æ•°ç»„ã€‚
         for(int i=0;i<upRowNum;i++){
             for(int j=0;j<upColNum;j++){
                 up[i][j] = 0;
             }
         }
 
-        //Ö»»­Ò»ĞĞ
+        //åªç”»ä¸€è¡Œ
         //int currentRowNum = 0;
         for(int currentRowNum=0;currentRowNum<upRowNum;){
         //for(int i=0;i<2;i++){
@@ -3631,7 +3632,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
         preHeigh = 0;
         maxHeigh = 0;
         minHeigh = 99999;
-        //Ïß³ÌËÀËø ------------------xiaotian
+        //çº¿ç¨‹æ­»é” ------------------xiaotian
         int minRowNum = 99999;
         int maxRowNum = 0;
         for(int currentColNum = 0;currentColNum<upColNum;){
@@ -3646,12 +3647,12 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                 list<QString> jzpoints;
 
                 if(shouldFlag){
-                    mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                    mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                     jzpoints = saveGet.readOrig(&spotWidth,&spotHeigh,mid);
                     debugNum++;
-                    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
-                    //cout<<"¿í¶ÈÎª:"<<midWidth<<"¸ß¶ÈÎª:"<<midHeight<<endl;
+                    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
+                    //cout<<"å®½åº¦ä¸º:"<<midWidth<<"é«˜åº¦ä¸º:"<<midHeight<<endl;
                     //preHeigh += spotHeigh;
 
                     preWidth += spotWidth;
@@ -3659,7 +3660,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                     w =preWidth - spotWidth/2.0;
                     //h = preHeigh - spotHeigh/2;
                     h = spotHeigh/2.0;
-                    //¼ÆËã×îĞ¡µÄheigh
+                    //è®¡ç®—æœ€å°çš„heigh
                     if(spotHeigh<minHeigh){
                         minHeigh = spotHeigh;
                     }
@@ -3696,7 +3697,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         ++poi;
                     }
 
-                    //¼ÇÂ¼Í¼°¸µÄÃæ»ı
+                    //è®°å½•å›¾æ¡ˆçš„é¢ç§¯
                     int graphC = 0;
                     for(int i=0;i<rowNum;i++){
                         for(int j=0;j<colNum;j++){
@@ -3705,7 +3706,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                             }
                         }
                     }
-                    //Ã¿¸öÍ¼°¸µÄÃæ»ı 40*40
+                    //æ¯ä¸ªå›¾æ¡ˆçš„é¢ç§¯ 40*40
 
                     graphArea[graphCount] = graphC*100;
 
@@ -3726,13 +3727,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         maxcurrentColNum = upColNum;
                     }
 
-                    //ÓÃ×÷Éú³ÉÑÕÉ«¾ØÕóµÄ
+                    //ç”¨ä½œç”Ÿæˆé¢œè‰²çŸ©é˜µçš„
                     removeCurrentRow[graphCount] = rowbegin;
                     removeCurrentCol[graphCount] = colbegin + drawZ/10;
                     removeRow[graphCount] = rowNum;
                     removeCol[graphCount] = colNum;
                     graphName[graphCount] = mid;
-                    cout<<"Í¼°¸:"<<graphCount<<"Ãæ»ı:"<<graphArea[graphCount];
+                    cout<<"å›¾æ¡ˆ:"<<graphCount<<"é¢ç§¯:"<<graphArea[graphCount];
                     graphCount++;
 
                     for(int i=rowbegin;i<maxcurrentRowNum;i++){
@@ -3751,7 +3752,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         maxRowNum = rowNum;
                     }
                     currentColNum +=  colNum;
-                    //--------------xiaotian  ¼ÆËãÍ¼°¸ÖĞĞÄµã×ø±ê
+                    //--------------xiaotian  è®¡ç®—å›¾æ¡ˆä¸­å¿ƒç‚¹åæ ‡
 
 
                         midWidth=width()/2;
@@ -3766,19 +3767,19 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                             spotOriginX[drawOk] = spotOriginX[drawOk] - (w+spotWidth/2.0-drawX);
                         }
 
-                        //¸Ä³ÉminHeigh
+                        //æ”¹æˆminHeigh
                         if((k+spotHeigh)>drawZ){
                             spotOriginY[drawOk] = spotOriginY[drawOk] - (k +spotHeigh - drawZ);
                         }
-                        cout<<"ÖĞĞÄµãx :"<<spotOriginX[drawOk]<<"ÖĞĞÄµãy:"<<spotOriginY[drawOk]<<endl;
+                        cout<<"ä¸­å¿ƒç‚¹x :"<<spotOriginX[drawOk]<<"ä¸­å¿ƒç‚¹y:"<<spotOriginY[drawOk]<<endl;
                         spotOriginOX[drawOk]=spotOriginX[drawOk]-midWidth;
                         spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
                         spotOriginPOX[drawOk]=spotOriginOX[drawOk];
                         spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-                        //Ñ¹Ëõ4 -----------------------xiaotian  µ÷³É²»Ñ¹Ëõ
+                        //å‹ç¼©4 -----------------------xiaotian  è°ƒæˆä¸å‹ç¼©
                         stretch[drawOk]=windowScale/4;
                         rotation[drawOk]=0;
-                        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                         QPointF *tempPoint;
                         oPoint.clear();
                         for(int t=1;t<num+1;t++){
@@ -3790,13 +3791,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                          }
                         showDigital = flag;
 
-                        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
-                        //update();    //--------xiaotian  Ò»´ÎĞÔupdate
+                        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
+                        //update();    //--------xiaotian  ä¸€æ¬¡æ€§update
 
                    }else{
                         QMessageBox msgBox(this);
-                        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-                        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+                        msgBox.setWindowTitle(tr("æç¤º"));
+                        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
                         msgBox.setMinimumSize(200,100);
                         msgBox.exec();
                         return -1;
@@ -3814,14 +3815,14 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
 
 
 
-        //ÖĞ¼ä
+        //ä¸­é—´
         k=0;
         upRowNum = drawY/10;
         upColNum = (drawX+2*drawZ)/10;
 
         int center[upRowNum][upColNum];
 
-        //³õÊ¼»¯ÉÏ»­²¼µÄ¶şÎ¬Êı×é¡£
+        //åˆå§‹åŒ–ä¸Šç”»å¸ƒçš„äºŒç»´æ•°ç»„ã€‚
         for(int i=0;i<upRowNum;i++){
             for(int j=0;j<upColNum;j++){
                 center[i][j] = 0;
@@ -3834,7 +3835,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
             preHeigh = 0;
             maxHeigh = 0;
             minHeigh = 99999;
-            //Ïß³ÌËÀËø ------------------xiaotian
+            //çº¿ç¨‹æ­»é” ------------------xiaotian
             int minRowNum = 99999;
             int maxRowNum = 0;
             for(int currentColNum = 0;currentColNum<upColNum;){
@@ -3850,12 +3851,12 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
 
 
                     if(shouldFlag){
-                        mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                        mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                         jzpoints = saveGet.readOrig(&spotWidth,&spotHeigh,mid);
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
-                        //cout<<"¿í¶ÈÎª:"<<midWidth<<"¸ß¶ÈÎª:"<<midHeight<<endl;
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
+                        //cout<<"å®½åº¦ä¸º:"<<midWidth<<"é«˜åº¦ä¸º:"<<midHeight<<endl;
                         //preHeigh += spotHeigh;
 
                         preWidth += spotWidth;
@@ -3863,7 +3864,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         w =preWidth - spotWidth/2.0;
                         //h = preHeigh - spotHeigh/2;
                         h = spotHeigh/2.0;
-                        //¼ÆËã×îĞ¡µÄheigh
+                        //è®¡ç®—æœ€å°çš„heigh
                         if(spotHeigh<minHeigh){
                             minHeigh = spotHeigh;
                         }
@@ -3901,7 +3902,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         }
 
 
-                        //¼ÇÂ¼Í¼°¸µÄÃæ»ı
+                        //è®°å½•å›¾æ¡ˆçš„é¢ç§¯
                         int graphC = 0;
                         for(int i=0;i<rowNum;i++){
                             for(int j=0;j<colNum;j++){
@@ -3910,7 +3911,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                                 }
                             }
                         }
-                        //Ã¿¸öÍ¼°¸µÄÃæ»ı 40*40
+                        //æ¯ä¸ªå›¾æ¡ˆçš„é¢ç§¯ 40*40
 
                         graphArea[graphCount] = graphC*100;
 
@@ -3931,13 +3932,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                             colbegin = upColNum - colNum;
                             maxcurrentColNum = upColNum;
                         }
-                        //ÓÃ×÷Éú³ÉÑÕÉ«¾ØÕóµÄ
+                        //ç”¨ä½œç”Ÿæˆé¢œè‰²çŸ©é˜µçš„
                         removeCurrentRow[graphCount] = rowbegin+drawZ/10;
                         removeCurrentCol[graphCount] = colbegin;
                         removeRow[graphCount] = rowNum;
                         removeCol[graphCount] = colNum;
                         graphName[graphCount] = mid;
-                        cout<<"Í¼°¸:"<<graphCount<<"Ãæ»ı:"<<graphArea[graphCount];
+                        cout<<"å›¾æ¡ˆ:"<<graphCount<<"é¢ç§¯:"<<graphArea[graphCount];
                         graphCount++;
 
                         for(int i=rowbegin;i<maxcurrentRowNum;i++){
@@ -3958,11 +3959,11 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         }
                         currentColNum +=  colNum;
 
-                        cout<<"w:"<<w<<"drawXÎª:"<<drawX<<endl;
+                        cout<<"w:"<<w<<"drawXä¸º:"<<drawX<<endl;
 
 
 
-                        //--------------xiaotian  ¼ÆËãÍ¼°¸ÖĞĞÄµã×ø±ê
+                        //--------------xiaotian  è®¡ç®—å›¾æ¡ˆä¸­å¿ƒç‚¹åæ ‡
 
 
                             midWidth=width()/2;
@@ -3985,16 +3986,16 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                             }
 
 
-                            cout<<"ÖĞĞÄµãx :"<<spotOriginX[drawOk]<<"ÖĞĞÄµãy:"<<spotOriginY[drawOk]<<endl;
+                            cout<<"ä¸­å¿ƒç‚¹x :"<<spotOriginX[drawOk]<<"ä¸­å¿ƒç‚¹y:"<<spotOriginY[drawOk]<<endl;
 
                             spotOriginOX[drawOk]=spotOriginX[drawOk]-midWidth;
                             spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
                             spotOriginPOX[drawOk]=spotOriginOX[drawOk];
                             spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-                            //Ñ¹Ëõ4 -----------------------xiaotian  µ÷³É²»Ñ¹Ëõ
+                            //å‹ç¼©4 -----------------------xiaotian  è°ƒæˆä¸å‹ç¼©
                             stretch[drawOk]=windowScale/4;
                             rotation[drawOk]=0;
-                            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                             QPointF *tempPoint;
                             oPoint.clear();
                             for(int t=1;t<num+1;t++){
@@ -4006,13 +4007,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                              }
                             showDigital = flag;
 
-                            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                             //update();
 
                        }else{
                             QMessageBox msgBox(this);
-                            msgBox.setWindowTitle(tr("ÌáÊ¾"));
-                            msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+                            msgBox.setWindowTitle(tr("æç¤º"));
+                            msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
                             msgBox.setMinimumSize(200,100);
                             msgBox.exec();
                             return -1;
@@ -4020,7 +4021,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                        saveStation();
             }
 
-           cout<<"µÚ"<<++count<<"ĞĞÍ¼°¸"<<endl;
+           cout<<"ç¬¬"<<++count<<"è¡Œå›¾æ¡ˆ"<<endl;
            /*
            k+= maxHeigh;
            currentRowNum += maxRowNum;
@@ -4033,14 +4034,14 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
 
 
 
-    //ÏÂ±ß
+    //ä¸‹è¾¹
     k=0;
     upRowNum = drawZ/10;
     upColNum = drawX/10;
 
     int down[upRowNum][upColNum];
 
-    //³õÊ¼»¯ÉÏ»­²¼µÄ¶şÎ¬Êı×é¡£
+    //åˆå§‹åŒ–ä¸Šç”»å¸ƒçš„äºŒç»´æ•°ç»„ã€‚
     for(int i=0;i<upRowNum;i++){
         for(int j=0;j<upColNum;j++){
             down[i][j] = 0;
@@ -4053,7 +4054,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
         preHeigh = 0;
         maxHeigh = 0;
         minHeigh = 99999;
-        //Ïß³ÌËÀËø ------------------xiaotian
+        //çº¿ç¨‹æ­»é” ------------------xiaotian
         int minRowNum = 99999;
         int maxRowNum = 0;
         for(int currentColNum = 0;currentColNum<upColNum;){
@@ -4068,12 +4069,12 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                 list<QString> jzpoints;
 
                 if(shouldFlag){
-                    mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                    mid = saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                     jzpoints = saveGet.readOrig(&spotWidth,&spotHeigh,mid);
                     debugNum++;
-                    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
-                    //cout<<"¿í¶ÈÎª:"<<midWidth<<"¸ß¶ÈÎª:"<<midHeight<<endl;
+                    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
+                    //cout<<"å®½åº¦ä¸º:"<<midWidth<<"é«˜åº¦ä¸º:"<<midHeight<<endl;
                     //preHeigh += spotHeigh;
 
                     preWidth += spotWidth;
@@ -4081,7 +4082,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                     w =preWidth - spotWidth/2.0;
                     //h = preHeigh - spotHeigh/2;
                     h = spotHeigh/2.0;
-                    //¼ÆËã×îĞ¡µÄheigh
+                    //è®¡ç®—æœ€å°çš„heigh
                     if(spotHeigh<minHeigh){
                         minHeigh = spotHeigh;
                     }
@@ -4118,7 +4119,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         ++poi;
                     }
 
-                    //¼ÇÂ¼Í¼°¸µÄÃæ»ı
+                    //è®°å½•å›¾æ¡ˆçš„é¢ç§¯
                     int graphC = 0;
                     for(int i=0;i<rowNum;i++){
                         for(int j=0;j<colNum;j++){
@@ -4127,7 +4128,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                             }
                         }
                     }
-                    //Ã¿¸öÍ¼°¸µÄÃæ»ı 40*40
+                    //æ¯ä¸ªå›¾æ¡ˆçš„é¢ç§¯ 40*40
 
                     graphArea[graphCount] = graphC*100;
 
@@ -4148,13 +4149,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         maxcurrentColNum = upColNum;
                     }
 
-                    //ÓÃ×÷Éú³ÉÑÕÉ«¾ØÕóµÄ
+                    //ç”¨ä½œç”Ÿæˆé¢œè‰²çŸ©é˜µçš„
                     removeCurrentRow[graphCount] = rowbegin+(drawZ+drawY)/10;
                     removeCurrentCol[graphCount] = colbegin+drawZ/10;
                     removeRow[graphCount] = rowNum;
                     removeCol[graphCount] = colNum;
                     graphName[graphCount] = mid;
-                    cout<<"Í¼°¸:"<<graphCount<<"Ãæ»ı:"<<graphArea[graphCount];
+                    cout<<"å›¾æ¡ˆ:"<<graphCount<<"é¢ç§¯:"<<graphArea[graphCount];
                     graphCount++;
 
 
@@ -4178,11 +4179,11 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                     }
                     currentColNum +=  colNum;
 
-                    cout<<"w:"<<w<<"drawXÎª:"<<drawX<<endl;
+                    cout<<"w:"<<w<<"drawXä¸º:"<<drawX<<endl;
 
 
 
-                    //--------------xiaotian  ¼ÆËãÍ¼°¸ÖĞĞÄµã×ø±ê
+                    //--------------xiaotian  è®¡ç®—å›¾æ¡ˆä¸­å¿ƒç‚¹åæ ‡
 
 
                         midWidth=width()/2;
@@ -4202,16 +4203,16 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                         }
 
 
-                        cout<<"ÖĞĞÄµãx :"<<spotOriginX[drawOk]<<"ÖĞĞÄµãy:"<<spotOriginY[drawOk]<<endl;
+                        cout<<"ä¸­å¿ƒç‚¹x :"<<spotOriginX[drawOk]<<"ä¸­å¿ƒç‚¹y:"<<spotOriginY[drawOk]<<endl;
 
                         spotOriginOX[drawOk]=spotOriginX[drawOk]-midWidth;
                         spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
                         spotOriginPOX[drawOk]=spotOriginOX[drawOk];
                         spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-                        //Ñ¹Ëõ4 -----------------------xiaotian  µ÷³É²»Ñ¹Ëõ
+                        //å‹ç¼©4 -----------------------xiaotian  è°ƒæˆä¸å‹ç¼©
                         stretch[drawOk]=windowScale/4;
                         rotation[drawOk]=0;
-                        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                         QPointF *tempPoint;
                         oPoint.clear();
                         for(int t=1;t<num+1;t++){
@@ -4223,13 +4224,13 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                          }
                         showDigital = flag;
 
-                        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
-                        //update();       //---------xiaotian    Ò»´ÎĞÔupdate
+                        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
+                        //update();       //---------xiaotian    ä¸€æ¬¡æ€§update
 
                    }else{
                         QMessageBox msgBox(this);
-                        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-                        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+                        msgBox.setWindowTitle(tr("æç¤º"));
+                        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
                         msgBox.setMinimumSize(200,100);
                         msgBox.exec();
                         return -1;
@@ -4237,7 +4238,7 @@ int DrawWidget::getCanvasPointSTestByControl(int num1,int num2){
                    saveStation();
         }
 
-       cout<<"µÚ"<<++count<<"ĞĞÍ¼°¸"<<endl;
+       cout<<"ç¬¬"<<++count<<"è¡Œå›¾æ¡ˆ"<<endl;
 
        k+=minHeigh;
        currentRowNum +=minRowNum;
@@ -4267,7 +4268,7 @@ if(AutoCADFlag){
 
     int debugNum=1;
 
-    //·Ö²¼±ßÔµµÄµã
+    //åˆ†å¸ƒè¾¹ç¼˜çš„ç‚¹
     getEdgePoint();
 
     if(mainWin->returnGetSize()){
@@ -4279,33 +4280,33 @@ if(AutoCADFlag){
 
 
 
-//    //·ÖÈı¸öÇøÓòËæ»ú°ßµã£¬ÉÏÖĞÏÂ
+//    //åˆ†ä¸‰ä¸ªåŒºåŸŸéšæœºæ–‘ç‚¹ï¼Œä¸Šä¸­ä¸‹
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-    //×î×ó±ß²¿·Ö
+    //æœ€å·¦è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX+2*drawZ;w+=100){
     for(int w=1;w<drawZ;w+=8/*100*/){
         for(int h=2;h<drawY-10;h+=8/*100*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
             if(debugNum==1){
-                //qDebug("Ê×¸öµã£º%d",spotReadNum);
+                //qDebug("é¦–ä¸ªç‚¹ï¼š%d",spotReadNum);
             }
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2-drawZ+w+40;
             spotOriginY[drawOk]=midHeight-drawY/2+h+40;
 
-            //Õâ¸öµØ·½ÖĞĞÄµãÊÇ°´ÕÕµ±Ç°Ó¦¸Ã»æÖÆµÄÎ»ÖÃÉè¶¨
+            //è¿™ä¸ªåœ°æ–¹ä¸­å¿ƒç‚¹æ˜¯æŒ‰ç…§å½“å‰åº”è¯¥ç»˜åˆ¶çš„ä½ç½®è®¾å®š
             spotOriginOX[drawOk]=spotOriginX[drawOk]-midWidth;
             spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
-            //spotOriginPOXºÍspotOriginPOYÊÇÎªÁËÊµÏÖËæ´°¿Ú·Å´óËõĞ¡ÓÃµÄ
+            //spotOriginPOXå’ŒspotOriginPOYæ˜¯ä¸ºäº†å®ç°éšçª—å£æ”¾å¤§ç¼©å°ç”¨çš„
             spotOriginPOX[drawOk]=spotOriginOX[drawOk];
             spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-            stretch[drawOk]=windowScale/4;//°ßµãÈë¿âµÄÊ±ºòÊÇ°´ÕÕ4Ã×ËãµÄ£¬ËõĞ¡ËÄ±¶ÕıºÃÊÇ100£¬¼´°ßµã´óĞ¡1Ã×
+            stretch[drawOk]=windowScale/4;//æ–‘ç‚¹å…¥åº“çš„æ—¶å€™æ˜¯æŒ‰ç…§4ç±³ç®—çš„ï¼Œç¼©å°å››å€æ­£å¥½æ˜¯100ï¼Œå³æ–‘ç‚¹å¤§å°1ç±³
             rotation[drawOk]=0;
 
             //qDebug("drawOk shi:%d   %d",drawOk,num);
@@ -4318,17 +4319,17 @@ if(AutoCADFlag){
                     }
                     else{
                         drawOk--;
-                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     }
                 }
             }
             //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
             if(detectI<11){
-                //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                     QPointF *tempPoint;
                     oPoint.clear();
                     for(int t=1;t<num+1;t++){
@@ -4338,7 +4339,7 @@ if(AutoCADFlag){
                         oPoint.push_back(tempPoint);
                         oPointAll.push_back(tempPoint);
                             }
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
             else{
                 drawOk--;
@@ -4349,15 +4350,15 @@ if(AutoCADFlag){
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-//×îÓÒ±ß²¿·Ö
+//æœ€å³è¾¹éƒ¨åˆ†
 
 
     for(int w=1;w<drawZ;w+=8/*100*/){
         for(int h=2;h<drawY-50;h+=8/*100*/){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth+drawX/2*windowScale+w*windowScale+40*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -4378,17 +4379,17 @@ if(AutoCADFlag){
                     }
                     else{
                         drawOk--;
-                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     }
                 }
             }
             //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
             if(detectI<11){
-                //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                     QPointF *tempPoint;
                     oPoint.clear();
                     for(int t=1;t<num+1;t++){
@@ -4398,7 +4399,7 @@ if(AutoCADFlag){
                         oPoint.push_back(tempPoint);
                         oPointAll.push_back(tempPoint);
                             }
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
             else{
                 drawOk--;
@@ -4409,9 +4410,9 @@ if(AutoCADFlag){
 
 //    for(int w=1;w<drawZ;w+=num1/*100*/){
 //        for(int h=20;h<drawY-50;h+=num2/*100*/){
-//            saveGet.readSpotPoint(2,&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//            saveGet.readSpotPoint(2,&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //            spotOriginX[drawOk]=midWidth+drawX/2*windowScale+w*windowScale+40*windowScale;
 //            spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+40*windowScale;
@@ -4422,7 +4423,7 @@ if(AutoCADFlag){
 //            stretch[drawOk]=windowScale/4;
 //            rotation[drawOk]=0;
 
-//            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //            QPointF *tempPoint;
 //            oPoint.clear();
 //            for(int t=1;t<num+1;t++){
@@ -4432,7 +4433,7 @@ if(AutoCADFlag){
 //                oPoint.push_back(tempPoint);
 //                oPointAll.push_back(tempPoint);
 //                    }
-//            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //        }
 //    }
 
@@ -4442,15 +4443,15 @@ if(AutoCADFlag){
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-            //×îÉÏ±ß²¿·Ö
+            //æœ€ä¸Šè¾¹éƒ¨åˆ†
             //for(int w=1;w<drawX;w+=100){
             for(int w=5;w<drawX-50;w+=8/*100*/){//120
                 for(int h=1;h<drawZ;h+=8/*100*/){
 
-                    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                     debugNum++;
-                    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                     spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
                     spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale+5*windowScale;
@@ -4471,17 +4472,17 @@ if(AutoCADFlag){
                             }
                             else{
                                 drawOk--;
-                                saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                                saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                                 debugNum++;
-                                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                             }
                         }
                     }
                     //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
                     if(detectI<11){
-                        //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                        //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                             QPointF *tempPoint;
                             oPoint.clear();
                             for(int t=1;t<num+1;t++){
@@ -4491,7 +4492,7 @@ if(AutoCADFlag){
                                 oPoint.push_back(tempPoint);
                                 oPointAll.push_back(tempPoint);
                                     }
-                            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                     }
                     else{
                         drawOk--;
@@ -4500,11 +4501,11 @@ if(AutoCADFlag){
             }
 
 
-//        //×îÉÏ±ß²¿·Ö
+//        //æœ€ä¸Šè¾¹éƒ¨åˆ†
 //        //for(int w=1;w<drawX;w+=100){
 //        for(int w=50;w<drawX-50;w+=num1/*100*/){//120
 //            for(int h=1;h<drawZ;h+=num2/*100*/){
-//                //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+//                //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
 //                list<QPainterPath*>::iterator temp = allPath.end();
 //                temp--;
 //                int count=allPath.size();
@@ -4531,9 +4532,9 @@ if(AutoCADFlag){
 //                }
 
 //        if(shouldFlag){
-//        saveGet.readSpotPoint(2,&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//        saveGet.readSpotPoint(2,&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //        spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
 //        spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale+5*windowScale;
@@ -4544,7 +4545,7 @@ if(AutoCADFlag){
 //        stretch[drawOk]=windowScale/4;
 //        rotation[drawOk]=0;
 
-//        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //        QPointF *tempPoint;
 //        oPoint.clear();
 //        for(int t=1;t<num+1;t++){
@@ -4554,7 +4555,7 @@ if(AutoCADFlag){
 //            oPoint.push_back(tempPoint);
 //            oPointAll.push_back(tempPoint);
 //                }
-//        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //                }
 ////        else{qDebug("bu hua  bu hua  bu hua  bu hua  bu hua  ");
 ////        }
@@ -4563,14 +4564,14 @@ if(AutoCADFlag){
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-            //ÖĞ¼ä²¿·Ö
+            //ä¸­é—´éƒ¨åˆ†
                 for(int w=6;w<drawX-10;w+=8/*100*/){
                     for(int h=1;h<drawY;h+=8/*100*/){
 
-                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                         spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
                         spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -4591,17 +4592,17 @@ if(AutoCADFlag){
                                 }
                                 else{
                                     drawOk--;
-                                    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                                    saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                                     debugNum++;
-                                    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                                    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                                 }
                             }
                         }
 
                         if(detectI<11){
-                            //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                            //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                                 QPointF *tempPoint;
                                 oPoint.clear();
                                 for(int t=1;t<num+1;t++){
@@ -4611,7 +4612,7 @@ if(AutoCADFlag){
                                     oPoint.push_back(tempPoint);
                                     oPointAll.push_back(tempPoint);
                                         }
-                                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                         }
                         else{
                             drawOk--;
@@ -4619,10 +4620,10 @@ if(AutoCADFlag){
                     }
                 }
 
-////ÖĞ¼ä²¿·Ö
+////ä¸­é—´éƒ¨åˆ†
 //    for(int w=60;w<drawX-60;w+=num1/*100*/){
 //        for(int h=1;h<drawY;h+=num2/*100*/){
-//            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+//            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
 //            list<QPainterPath*>::iterator temp = allPath.end();
 //            temp--;
 //            int count=allPath.size();
@@ -4651,9 +4652,9 @@ if(AutoCADFlag){
 
 
 //            if(shouldFlag){
-//            saveGet.readSpotPoint(2,&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//            saveGet.readSpotPoint(2,&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //            spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
 //            spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -4664,7 +4665,7 @@ if(AutoCADFlag){
 //            stretch[drawOk]=windowScale/4;
 //            rotation[drawOk]=0;
 
-//            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //            QPointF *tempPoint;
 //            oPoint.clear();
 //            for(int t=1;t<num+1;t++){
@@ -4674,21 +4675,21 @@ if(AutoCADFlag){
 //                oPoint.push_back(tempPoint);
 //                oPointAll.push_back(tempPoint);
 //                    }
-//            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //            }
 //        }
 //    }
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-//×îÏÂ±ß²¿·Ö
+//æœ€ä¸‹è¾¹éƒ¨åˆ†
     //for(int w=1;w<drawX;w+=100){
     for(int w=5;w<drawX-5;w+=8/*100*/){
         for(int h=1;h<drawZ;h+=8/*100*/){
 
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
             spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -4709,17 +4710,17 @@ if(AutoCADFlag){
                     }
                     else{
                         drawOk--;
-                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     }
                 }
             }
 
             if(detectI<11){
-                //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                     QPointF *tempPoint;
                     oPoint.clear();
                     for(int t=1;t<num+1;t++){
@@ -4729,14 +4730,14 @@ if(AutoCADFlag){
                         oPoint.push_back(tempPoint);
                         oPointAll.push_back(tempPoint);
                             }
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
             else{
                 drawOk--;
             }
         }
     }
-//            //¼ì²âËùÒªÌî³äµÄµãÊÇ²»ÊÇÔÚÒÑÓĞ°ßµãÄÚ²¿
+//            //æ£€æµ‹æ‰€è¦å¡«å……çš„ç‚¹æ˜¯ä¸æ˜¯åœ¨å·²æœ‰æ–‘ç‚¹å†…éƒ¨
 //            list<QPainterPath*>::iterator temp = allPath.end();
 //            temp--;
 //            int count=allPath.size();
@@ -4765,9 +4766,9 @@ if(AutoCADFlag){
 
 
 //            if(shouldFlag){
-//            saveGet.readSpotPoint(2,&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//            saveGet.readSpotPoint(2,&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //            spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale+5*windowScale;
 //            spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale+5*windowScale;
@@ -4778,7 +4779,7 @@ if(AutoCADFlag){
 //            stretch[drawOk]=windowScale/4;
 //            rotation[drawOk]=0;
 
-//            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //            QPointF *tempPoint;
 //            oPoint.clear();
 //            for(int t=1;t<num+1;t++){
@@ -4788,7 +4789,7 @@ if(AutoCADFlag){
 //                oPoint.push_back(tempPoint);
 //                oPointAll.push_back(tempPoint);
 //                    }
-//            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //            }
 //        }
 //    }
@@ -4798,10 +4799,10 @@ if(AutoCADFlag){
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("ÇëÔÚ»­²¼ÎªÎåÊÓÍ¼Ä£Ê½ÏÂÊ¹ÓÃ¸Ã¹¦ÄÜ        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("è¯·åœ¨ç”»å¸ƒä¸ºäº”è§†å›¾æ¨¡å¼ä¸‹ä½¿ç”¨è¯¥åŠŸèƒ½        "));
         msgBox.setMinimumSize(200,100);
-       //QMessageBox::about(this,tr("ÌáÊ¾ĞÅÏ¢"),tr("¸üĞÂ³É¹¦"));
+       //QMessageBox::about(this,tr("æç¤ºä¿¡æ¯"),tr("æ›´æ–°æˆåŠŸ"));
         msgBox.exec();
         return;
     }
@@ -4821,13 +4822,13 @@ void DrawWidget::getCanvasBigPointS(){
 //        ranNumAll[i]=rand()%100+1;
 //    }
 
-//    //ÉÏ±ß²¿·Ö
+//    //ä¸Šè¾¹éƒ¨åˆ†
 //    for(int h=300;h<drawY+drawZ*2;h+=600){
 //        for(int w=80;w<drawX-50;w+=110){
 //            ranNum=ranNumAll[thisNum];
-//                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 //                spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+ranNum*windowScale+h*windowScale;
@@ -4838,7 +4839,7 @@ void DrawWidget::getCanvasBigPointS(){
 //                stretch[drawOk]=windowScale/4;
 //                rotation[drawOk]=0;
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                QPointF *tempPoint;
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
@@ -4848,12 +4849,12 @@ void DrawWidget::getCanvasBigPointS(){
 //                    oPoint.push_back(tempPoint);
 //                    oPointAll.push_back(tempPoint);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //                //////////////////////////////////////////////////////////////////////
 
-////                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-////                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-////                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+////                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+////                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+////                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 ////                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 ////                spotOriginY[drawOk]=midHeight-drawY/2*windowScale+560*windowScale-drawZ/2*windowScale+ranNum*windowScale;
@@ -4864,7 +4865,7 @@ void DrawWidget::getCanvasBigPointS(){
 ////                stretch[drawOk]=windowScale/4;
 ////                rotation[drawOk]=0;
 
-////                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+////                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 ////                QPointF *tempPoint1;
 ////                oPoint.clear();
 ////                for(int t=1;t<num+1;t++){
@@ -4874,7 +4875,7 @@ void DrawWidget::getCanvasBigPointS(){
 ////                    oPoint.push_back(tempPoint1);
 ////                    oPointAll.push_back(tempPoint1);
 ////                        }
-////                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+////                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //                thisNum++;
 //                thisNum=thisNum%100+1;
 
@@ -4883,9 +4884,9 @@ void DrawWidget::getCanvasBigPointS(){
 ////        int addNum=1;
 ////        for(int w=80;w<drawX-50;w+=110){
 ////            for(int h=600;h<drawY+drawZ*2-300;h+=600){
-////            saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-////            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-////            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+////            saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+////            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+////            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 ////            spotOriginX[drawOk]=spotOriginX[addNum];//midWidth-drawX/2*windowScale+w*windowScale;
 ////            spotOriginY[drawOk]=spotOriginY[addNum]+h*windowScale;//midHeight-drawY/2*windowScale+560*windowScale-drawZ/2*windowScale+ranNum*windowScale;
@@ -4896,7 +4897,7 @@ void DrawWidget::getCanvasBigPointS(){
 ////            stretch[drawOk]=windowScale/4;
 ////            rotation[drawOk]=0;
 
-////            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+////            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 ////            QPointF *tempPoint1;
 ////            oPoint.clear();
 ////            for(int t=1;t<num+1;t++){
@@ -4906,7 +4907,7 @@ void DrawWidget::getCanvasBigPointS(){
 ////                oPoint.push_back(tempPoint1);
 ////                oPointAll.push_back(tempPoint1);
 ////                    }
-////            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+////            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 ////            addNum++;
 ////        }
 ////        }
@@ -4926,13 +4927,13 @@ void DrawWidget::getCanvasBigPointT(){
 //        ranNumAll[i]=rand()%100+1;
 //    }
 
-//    //ÉÏÏÂ²¿·Ö
+//    //ä¸Šä¸‹éƒ¨åˆ†
 //    for(int h=300;h<drawY+drawZ*2;h+=600){
 //        for(int w=100;w<drawX-60;w+=120){
 //            ranNum=ranNumAll[thisNum];
-//                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 //                spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+ranNum*windowScale+h*windowScale;
@@ -4943,7 +4944,7 @@ void DrawWidget::getCanvasBigPointT(){
 //                stretch[drawOk]=windowScale/4;
 //                rotation[drawOk]=0;
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                QPointF *tempPoint;
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
@@ -4953,13 +4954,13 @@ void DrawWidget::getCanvasBigPointT(){
 //                    oPoint.push_back(tempPoint);
 //                    oPointAll.push_back(tempPoint);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-////                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-////                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+////                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+////                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+////                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 ////                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 ////                spotOriginY[drawOk]=midHeight-drawY/2*windowScale+h*windowScale-drawZ/2*windowScale+ranNum*windowScale;
@@ -4970,7 +4971,7 @@ void DrawWidget::getCanvasBigPointT(){
 ////                stretch[drawOk]=windowScale/4;
 ////                rotation[drawOk]=0;
 
-////                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+////                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 ////                QPointF *tempPoint1;
 ////                oPoint.clear();
 ////                for(int t=1;t<num+1;t++){
@@ -4980,7 +4981,7 @@ void DrawWidget::getCanvasBigPointT(){
 ////                    oPoint.push_back(tempPoint1);
 ////                    oPointAll.push_back(tempPoint1);
 ////                        }
-////                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+////                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
 ////                thisNum++;
@@ -5003,7 +5004,7 @@ void DrawWidget::getDigitalCanvas(QPainter &p){
 //    for(float i=midWidth-0.5*drawX-drawZ;i<midWidth-0.5*drawX;i+=18){
 //        for(float j=midHeight-0.5*drawY;j<midHeight+0.5*drawY;j+=18){
     if(drawOk!=0){
-        //×îÉÏ±ß²¿·Ö
+        //æœ€ä¸Šè¾¹éƒ¨åˆ†
         list<QPainterPath*>::iterator temp;
         int count;
         float x,y;
@@ -5035,7 +5036,7 @@ void DrawWidget::getDigitalCanvas(QPainter &p){
         count=1;
         //qDebug("start:%f  %f",i,j);
         for(;temp!=allPath.end();++temp){
-            ////ÕæÊµµÄµãµ½Ä³¸ö°ßµãµÄ×ø±êÏµ
+            ////çœŸå®çš„ç‚¹åˆ°æŸä¸ªæ–‘ç‚¹çš„åæ ‡ç³»
             x=(i-spotOriginX[count])*cos(rotation[count]/180*PI)/stretch[count]-(j-spotOriginY[count])*sin(rotation[count]/180*PI)/stretch[count];
             y=(i-spotOriginX[count])*sin(rotation[count]/180*PI)/stretch[count]+(j-spotOriginY[count])*cos(rotation[count]/180*PI)/stretch[count];
             //temp.addRect();
@@ -5147,7 +5148,7 @@ p.setBrush(Qt::NoBrush);
 
 
 
-//×î×ó±ß²¿·Ö
+//æœ€å·¦è¾¹éƒ¨åˆ†
 p.setPen(QPen(Qt::blue,2,Qt::SolidLine));
 rectNum=(2*drawZ+drawX)*drawX/64;
 float colorAXYL[rectNum][2],colorBXYL[rectNum][2],colorCXYL[rectNum][2],colorDXYL[rectNum][2];
@@ -5176,7 +5177,7 @@ temp = allPath.begin();
 count=1;
 //qDebug("start:%f  %f",i,j);
 for(;temp!=allPath.end();++temp){
-    ////ÕæÊµµÄµãµ½Ä³¸ö°ßµãµÄ×ø±êÏµ
+    ////çœŸå®çš„ç‚¹åˆ°æŸä¸ªæ–‘ç‚¹çš„åæ ‡ç³»
     x=(i-spotOriginX[count])*cos(rotation[count]/180*PI)/stretch[count]-(j-spotOriginY[count])*sin(rotation[count]/180*PI)/stretch[count];
     y=(i-spotOriginX[count])*sin(rotation[count]/180*PI)/stretch[count]+(j-spotOriginY[count])*cos(rotation[count]/180*PI)/stretch[count];
     //tempL.addRect();
@@ -5288,7 +5289,7 @@ p.setBrush(Qt::NoBrush);
 
 
 
-//×îÓÒ±ß²¿·Ö
+//æœ€å³è¾¹éƒ¨åˆ†
 p.setPen(QPen(Qt::blue,2,Qt::SolidLine));
 rectNum=(2*drawZ+drawX)*drawX/64;
 float colorAXYR[rectNum][2],colorBXYR[rectNum][2],colorCXYR[rectNum][2],colorDXYR[rectNum][2];
@@ -5317,7 +5318,7 @@ temp = allPath.begin();
 count=1;
 //qDebug("start:%f  %f",i,j);
 for(;temp!=allPath.end();++temp){
-    ////ÕæÊµµÄµãµ½Ä³¸ö°ßµãµÄ×ø±êÏµ
+    ////çœŸå®çš„ç‚¹åˆ°æŸä¸ªæ–‘ç‚¹çš„åæ ‡ç³»
     x=(i-spotOriginX[count])*cos(rotation[count]/180*PI)/stretch[count]-(j-spotOriginY[count])*sin(rotation[count]/180*PI)/stretch[count];
     y=(i-spotOriginX[count])*sin(rotation[count]/180*PI)/stretch[count]+(j-spotOriginY[count])*cos(rotation[count]/180*PI)/stretch[count];
     //tempL.addRect();
@@ -5438,14 +5439,14 @@ void DrawWidget::getEdgePoint(){
     int spotReadNum;
     int debugNum=0;
     //QPointF *tempPoint;
-    //µÚÒ»¸ö±ß
+    //ç¬¬ä¸€ä¸ªè¾¹
         for(int h=1;h<drawZ-50;h+=10){
-            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             debugNum++;
 
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
             drawOk1++;
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+10;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale;
@@ -5465,17 +5466,17 @@ void DrawWidget::getEdgePoint(){
                     }
                     else{
                         drawOk--;
-                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÎªµ÷ÓÃµÄÎÄ¼şĞòÁĞÖĞµÄÄÄ¸ö°ßµã
+                        saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°ä¸ºè°ƒç”¨çš„æ–‡ä»¶åºåˆ—ä¸­çš„å“ªä¸ªæ–‘ç‚¹
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     }
                 }
             }
             //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
             if(detectI<11){
-                //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                     QPointF *tempPoint;
                     oPoint.clear();
                     for(int t=1;t<num+1;t++){
@@ -5485,13 +5486,13 @@ void DrawWidget::getEdgePoint(){
                         oPoint.push_back(tempPoint);
                         oPointAll.push_back(tempPoint);
                             }
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
-                    //////////////////ÓëÁíÒ»Ìõ±ß¶ÔÓ¦
-                                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                    //////////////////ä¸å¦ä¸€æ¡è¾¹å¯¹åº”
+                                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                                 drawOk1++;
-                                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                                 spotOriginX[drawOk]=midWidth-drawX/2*windowScale-drawZ*windowScale+h*windowScale;
                                 spotOriginY[drawOk]=midHeight-drawY/2*windowScale-10;
@@ -5510,14 +5511,14 @@ void DrawWidget::getEdgePoint(){
                                     oPoint.push_back(tempPoint);
                                     oPointAll.push_back(tempPoint);
                                         }
-                                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
             else{
                 drawOk--;
             }
 
 
-            //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+            //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //            QPointF *tempPoint;
 //            oPoint.clear();
 //            for(int t=1;t<num+1;t++){
@@ -5527,20 +5528,20 @@ void DrawWidget::getEdgePoint(){
 //                oPoint.push_back(tempPoint);
 //                oPointAll.push_back(tempPoint);
 //                    }
-//            caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//            caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
 
     }
 /////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
-        //µÚ¶ş¸ö±ß
+        //ç¬¬äºŒä¸ªè¾¹
           for(int h=1;h<drawZ-50;h+=80){
-              saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+              saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
               debugNum++;
-              spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+              spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
               drawOk2++;
-              pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+              pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
               spotOriginX[drawOk]=midWidth+drawX/2*windowScale-10;
               spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+h*windowScale;
@@ -5562,17 +5563,17 @@ void DrawWidget::getEdgePoint(){
                       }
                       else{
                           drawOk--;
-                          saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                          saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                           debugNum++;
-                          spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                          pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                          spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                          pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                       }
                   }
               }
               //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
               if(detectI<11){
-                  //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                      //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                  //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                      //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                       QPointF *tempPoint;
                       oPoint.clear();
                       for(int t=1;t<num+1;t++){
@@ -5582,13 +5583,13 @@ void DrawWidget::getEdgePoint(){
                           oPoint.push_back(tempPoint);
                           oPointAll.push_back(tempPoint);
                               }
-                      caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                      caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
-                      //////////////////ÓëÁíÒ»Ìõ±ß¶ÔÓ¦
-                                    spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                      //////////////////ä¸å¦ä¸€æ¡è¾¹å¯¹åº”
+                                    spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                                     drawOk2++;
-                                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                                     spotOriginX[drawOk]=midWidth+drawX/2*windowScale+drawZ*windowScale-h*windowScale;
                                     spotOriginY[drawOk]=midHeight-drawY/2*windowScale-10;
@@ -5607,7 +5608,7 @@ void DrawWidget::getEdgePoint(){
                                         oPoint.push_back(tempPoint);
                                         oPointAll.push_back(tempPoint);
                                             }
-                                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
               }
               else{
                   drawOk--;
@@ -5616,7 +5617,7 @@ void DrawWidget::getEdgePoint(){
 
 
 
-//              //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//              //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //              QPointF *tempPoint;
 //              oPoint.clear();
 //              for(int t=1;t<num+1;t++){
@@ -5626,11 +5627,11 @@ void DrawWidget::getEdgePoint(){
 //                  oPoint.push_back(tempPoint);
 //                  oPointAll.push_back(tempPoint);
 //                      }
-//              caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//              caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //   //////////////////////////////////////////////////////////////////////////////////
-//              spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+//              spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
 //              drawOk2++;
-//              pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//              pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //              spotOriginX[drawOk]=midWidth+drawX/2*windowScale+drawZ*windowScale-h*windowScale;
 //              spotOriginY[drawOk]=midHeight-drawY/2*windowScale-10;
@@ -5649,18 +5650,18 @@ void DrawWidget::getEdgePoint(){
 //                  oPoint.push_back(tempPoint);
 //                  oPointAll.push_back(tempPoint);
 //                      }
-//              caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//              caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
       }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-          //µÚÈı¸ö±ß
+          //ç¬¬ä¸‰ä¸ªè¾¹
             for(int h=50;h<drawZ;h+=80){
-                saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                 debugNum++;
-                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                 drawOk3++;
-                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                 spotOriginX[drawOk]=midWidth-drawX/2*windowScale+10;
                 spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale;
@@ -5681,17 +5682,17 @@ void DrawWidget::getEdgePoint(){
                         }
                         else{
                             drawOk--;
-                            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                            saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                             debugNum++;
-                            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                         }
                     }
                 }
                 //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
                 if(detectI<11){
-                    //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                    //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                         QPointF *tempPoint;
                         oPoint.clear();
                         for(int t=1;t<num+1;t++){
@@ -5701,13 +5702,13 @@ void DrawWidget::getEdgePoint(){
                             oPoint.push_back(tempPoint);
                             oPointAll.push_back(tempPoint);
                                 }
-                        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
-                        //////////////////ÓëÁíÒ»Ìõ±ß¶ÔÓ¦
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                        //////////////////ä¸å¦ä¸€æ¡è¾¹å¯¹åº”
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                         drawOk3++;
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                         spotOriginX[drawOk]=midWidth-drawX/2*windowScale-h*windowScale;
                         spotOriginY[drawOk]=midHeight+drawY/2*windowScale+10;
@@ -5718,7 +5719,7 @@ void DrawWidget::getEdgePoint(){
                         stretch[drawOk]=windowScale/4;
                         rotation[drawOk]=90;
 
-                        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                         oPoint.clear();
                         for(int t=1;t<num+1;t++){
                             tempPoint=new QPointF;
@@ -5727,7 +5728,7 @@ void DrawWidget::getEdgePoint(){
                             oPoint.push_back(tempPoint);
                             oPointAll.push_back(tempPoint);
                                 }
-                        caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                        caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                 }
                 else{
                     drawOk--;
@@ -5736,7 +5737,7 @@ void DrawWidget::getEdgePoint(){
 
 
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                QPointF *tempPoint;
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
@@ -5746,11 +5747,11 @@ void DrawWidget::getEdgePoint(){
 //                    oPoint.push_back(tempPoint);
 //                    oPointAll.push_back(tempPoint);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 ///////////////////////////////////////////////////////////
-//                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+//                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
 //                drawOk3++;
-//                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                spotOriginX[drawOk]=midWidth-drawX/2*windowScale-h*windowScale;
 //                spotOriginY[drawOk]=midHeight+drawY/2*windowScale+10;
@@ -5761,7 +5762,7 @@ void DrawWidget::getEdgePoint(){
 //                stretch[drawOk]=windowScale/4;
 //                rotation[drawOk]=90;
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
 //                    tempPoint=new QPointF;
@@ -5770,17 +5771,17 @@ void DrawWidget::getEdgePoint(){
 //                    oPoint.push_back(tempPoint);
 //                    oPointAll.push_back(tempPoint);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
-            //µÚËÄ¸ö±ß
+            //ç¬¬å››ä¸ªè¾¹
               for(int h=50;h<drawZ;h+=80){
-                  saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                  saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                   debugNum++;
-                  spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                  spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                   drawOk4++;
-                  pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                  pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                   spotOriginX[drawOk]=midWidth+drawX/2*windowScale-10;
                   spotOriginY[drawOk]=midHeight+drawY/2*windowScale+h*windowScale;
@@ -5801,17 +5802,17 @@ void DrawWidget::getEdgePoint(){
                           }
                           else{
                               drawOk--;
-                              saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+                              saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
                               debugNum++;
-                              spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                              pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                              spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                              pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                           }
                       }
                   }
                   //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
                   if(detectI<11){
-                      //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                          //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                      //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                          //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                           QPointF *tempPoint;
                           oPoint.clear();
                           for(int t=1;t<num+1;t++){
@@ -5821,13 +5822,13 @@ void DrawWidget::getEdgePoint(){
                               oPoint.push_back(tempPoint);
                               oPointAll.push_back(tempPoint);
                                   }
-                          caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                          caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
-                          //////////////////ÓëÁíÒ»Ìõ±ß¶ÔÓ¦
-                          spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                          //////////////////ä¸å¦ä¸€æ¡è¾¹å¯¹åº”
+                          spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                           drawOk4++;
-                          pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                          pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
                           spotOriginX[drawOk]=midWidth+drawX/2*windowScale+h*windowScale;
                           spotOriginY[drawOk]=midHeight+drawY/2*windowScale+10;
@@ -5838,7 +5839,7 @@ void DrawWidget::getEdgePoint(){
                           stretch[drawOk]=windowScale/4;
                           rotation[drawOk]=-90;
 
-                          //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                          //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                           oPoint.clear();
                           for(int t=1;t<num+1;t++){
                               tempPoint=new QPointF;
@@ -5847,7 +5848,7 @@ void DrawWidget::getEdgePoint(){
                               oPoint.push_back(tempPoint);
                               oPointAll.push_back(tempPoint);
                                   }
-                          caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                          caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                   }
                   else{
                       drawOk--;
@@ -5855,7 +5856,7 @@ void DrawWidget::getEdgePoint(){
 
 
 
-//                  //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                  //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                  QPointF *tempPoint;
 //                  oPoint.clear();
 //                  for(int t=1;t<num+1;t++){
@@ -5865,11 +5866,11 @@ void DrawWidget::getEdgePoint(){
 //                      oPoint.push_back(tempPoint);
 //                      oPointAll.push_back(tempPoint);
 //                          }
-//                  caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                  caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 //////////////////////////////////////////////////////////////////////////////////////////
-//                  spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+//                  spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
 //                  drawOk4++;
-//                  pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                  pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                  spotOriginX[drawOk]=midWidth+drawX/2*windowScale+h*windowScale;
 //                  spotOriginY[drawOk]=midHeight+drawY/2*windowScale+10;
@@ -5880,7 +5881,7 @@ void DrawWidget::getEdgePoint(){
 //                  stretch[drawOk]=windowScale/4;
 //                  rotation[drawOk]=-90;
 
-//                  //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                  //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                  oPoint.clear();
 //                  for(int t=1;t<num+1;t++){
 //                      tempPoint=new QPointF;
@@ -5889,7 +5890,7 @@ void DrawWidget::getEdgePoint(){
 //                      oPoint.push_back(tempPoint);
 //                      oPointAll.push_back(tempPoint);
 //                          }
-//                  caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                  caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
           }
 //          //qDebug("######################:   %d   %d   %d   %d",drawOk1,drawOk2,drawOk3,drawOk4);
 }
@@ -5908,18 +5909,18 @@ void DrawWidget::getCanvasBigPoint(){
         ranNumAll[i]=rand()%100+1;
     }
 
-    //ÉÏ±ß²¿·Ö
+    //ä¸Šè¾¹éƒ¨åˆ†
     for(int h=300;h<drawY+drawZ*2;h+=100){
         for(int w=80;w<drawX-50;w+=100){
 
-            //saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
+            //saveGet.readSpotPoint(spotReadNum,&num,saveP,debugNum);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
             saveGet.readBigSpotPoint(&num,saveP,debugNum);
             debugNum++;
-            spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+            spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
 //            if(debugNum==1){
-//                qDebug("Ê×¸öµã£º%d",spotReadNum);
+//                qDebug("é¦–ä¸ªç‚¹ï¼š%d",spotReadNum);
 //            }
-            pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+            pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
             spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
             spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale/*+ranNum*windowScale*/+h*windowScale;
@@ -5942,15 +5943,15 @@ void DrawWidget::getCanvasBigPoint(){
                         drawOk--;
                         saveGet.readBigSpotPoint(&num,saveP,debugNum);
                         debugNum++;
-                        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-                        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+                        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     }
                 }
             }
             //qDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%d@@@@@@%d$$$$$%d",detectI,w,h);
             if(detectI<11){
-                //qDebug("»æÖÆµÚ%d¸öµã",drawOk);
-                    //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+                //qDebug("ç»˜åˆ¶ç¬¬%dä¸ªç‚¹",drawOk);
+                    //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
                     QPointF *tempPoint;
                     oPoint.clear();
                     for(int t=1;t<num+1;t++){
@@ -5960,7 +5961,7 @@ void DrawWidget::getCanvasBigPoint(){
                         oPoint.push_back(tempPoint);
                         oPointAll.push_back(tempPoint);
                             }
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
             }
             else{
                 drawOk--;
@@ -5969,9 +5970,9 @@ void DrawWidget::getCanvasBigPoint(){
 
             //for(int h=1;h<drawY;h+=600){
 //            ranNum=ranNumAll[thisNum];
-//                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 //                spotOriginY[drawOk]=midHeight-drawY/2*windowScale-drawZ*windowScale+ranNum*windowScale+h*windowScale;
@@ -5982,7 +5983,7 @@ void DrawWidget::getCanvasBigPoint(){
 //                stretch[drawOk]=windowScale/4;
 //                rotation[drawOk]=0;
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                QPointF *tempPoint;
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
@@ -5992,12 +5993,12 @@ void DrawWidget::getCanvasBigPoint(){
 //                    oPoint.push_back(tempPoint);
 //                    oPointAll.push_back(tempPoint);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                 //////////////////////////////////////////////////////////////////////
 
-//                saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//                spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//                pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//                saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//                spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//                pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //                spotOriginX[drawOk]=midWidth-drawX/2*windowScale+w*windowScale;
 //                spotOriginY[drawOk]=midHeight-drawY/2*windowScale+550*windowScale-drawZ/2*windowScale+ranNum*windowScale;
@@ -6008,7 +6009,7 @@ void DrawWidget::getCanvasBigPoint(){
 //                stretch[drawOk]=windowScale/4;
 //                rotation[drawOk]=0;
 
-//                //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//                //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //                QPointF *tempPoint1;
 //                oPoint.clear();
 //                for(int t=1;t<num+1;t++){
@@ -6018,7 +6019,7 @@ void DrawWidget::getCanvasBigPoint(){
 //                    oPoint.push_back(tempPoint1);
 //                    oPointAll.push_back(tempPoint1);
 //                        }
-//                caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//                caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
 
                 thisNum++;
@@ -6027,9 +6028,9 @@ void DrawWidget::getCanvasBigPoint(){
         }
 //        int addNum=1;
 //for(int w=80;w<drawX-50;w+=100){
-//        saveGet.readBigSpotPoint(&num,saveP);//µÚÒ»¸ö²ÎÊıÃ»ÓÃ
-//        spotNum[++drawOk]=num;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
-//        pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+//        saveGet.readBigSpotPoint(&num,saveP);//ç¬¬ä¸€ä¸ªå‚æ•°æ²¡ç”¨
+//        spotNum[++drawOk]=num;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
+//        pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
 
 //        spotOriginX[drawOk]=spotOriginX[addNum];
 //        spotOriginY[drawOk]=spotOriginY[addNum]+550*windowScale;
@@ -6042,7 +6043,7 @@ void DrawWidget::getCanvasBigPoint(){
 //        stretch[drawOk]=windowScale/4;
 //        rotation[drawOk]=0;
 
-//        //°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
+//        //æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
 //        QPointF *tempPoint1;
 //        oPoint.clear();
 //        for(int t=1;t<num+1;t++){
@@ -6054,9 +6055,9 @@ void DrawWidget::getCanvasBigPoint(){
 //                }
 //        caculateOneCurve();
 //        addNum++;
-//        }//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+//        }//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
 
-//    //ÏÂ±ß²¿·Ö
+//    //ä¸‹è¾¹éƒ¨åˆ†
 //        for(int w=80;w<drawX-50;w+=100){
 //            //for(int h=1;h<drawY;h+=600){
 //                thisNum=1;
@@ -6078,12 +6079,12 @@ float DrawWidget::getWindowScale(){
     return windowScale;
 }
 
-//void DrawWidget::judgeIntersection(int num[5][100],int count/*ÎåÊÓÍ¼µÄÄÄ²¿·Ö*/,int *hasNum,int ox,int oy,int wid,int hei){
-void DrawWidget::judgeIntersection(int num[5][1000],int count/*ÎåÊÓÍ¼µÄÄÄ²¿·Ö*/,int *hasNum,int ox,int oy,int wid,int hei){
+//void DrawWidget::judgeIntersection(int num[5][100],int count/*äº”è§†å›¾çš„å“ªéƒ¨åˆ†*/,int *hasNum,int ox,int oy,int wid,int hei){
+void DrawWidget::judgeIntersection(int num[5][1000],int count/*äº”è§†å›¾çš„å“ªéƒ¨åˆ†*/,int *hasNum,int ox,int oy,int wid,int hei){
     //qDebug("sssssssss");
     list<QPainterPath*>::iterator temp = allPath.begin();
     int t=1;
-    *hasNum=0;//ÎåÊÓÍ¼µÄÕâ²¿·ÖËù°üº¬µÄ°ßµã×ÜÊı
+    *hasNum=0;//äº”è§†å›¾çš„è¿™éƒ¨åˆ†æ‰€åŒ…å«çš„æ–‘ç‚¹æ€»æ•°
     QPointF tempPoint;
     float x,y,j;
     int con;
@@ -6102,9 +6103,9 @@ void DrawWidget::judgeIntersection(int num[5][1000],int count/*ÎåÊÓÍ¼µÄÄÄ²¿·Ö*/,
                     tempPoint.setX(x);
                     tempPoint.setY(y);
                     if((*temp)->contains(tempPoint)){
-                        num[count][(*hasNum)]=t;//±£´æ°ßµãĞòºÅ
+                        num[count][(*hasNum)]=t;//ä¿å­˜æ–‘ç‚¹åºå·
                         //qDebug("&&&&%d %d",count,*hasNum);
-                        (*hasNum)++;//´Ë´¦ÎªÎåÊÓÍ¼Ëù°üº¬°ßµã¸öÊı,Êı×éÏÂ±í´Ó0¿ªÊ¼
+                        (*hasNum)++;//æ­¤å¤„ä¸ºäº”è§†å›¾æ‰€åŒ…å«æ–‘ç‚¹ä¸ªæ•°,æ•°ç»„ä¸‹è¡¨ä»0å¼€å§‹
                         con=0;
                         //qDebug("!!!%d",t);
                         break;
@@ -6147,19 +6148,19 @@ void DrawWidget::keyReleaseEvent(QKeyEvent *event){
 void DrawWidget::mapping(){
     if(fabs(windowScale-1)<0.001){
    cWindow=new childWindow();
-   cWindow->setWindowTitle(QObject::tr("Ä£ĞÍÊÓÍ¼"));
+   cWindow->setWindowTitle(QObject::tr("æ¨¡å‹è§†å›¾"));
    cWindow->show();
    connect(cWindow,SIGNAL(ChildWindowEvent()),this,SLOT(ChildWindowEventSlot()));
 
 
-    //int num[5][100],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;
-    int num[5][1000],hasNum/*¼ÇÂ¼°ßµã¸öÊı*/;
+    //int num[5][100],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;
+    int num[5][1000],hasNum/*è®°å½•æ–‘ç‚¹ä¸ªæ•°*/;
     list<QPainterPath*>::iterator tempPath;
     float oX,oY;
     QPen pen(backGroundColor,0,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin);
 
 
-    //µÚÒ»¸±Í¼
+    //ç¬¬ä¸€å‰¯å›¾
     judgeIntersection(num,0,&hasNum,midWidth-drawX/2,midHeight-drawY/2-drawZ,drawX,drawZ);
     QPixmap pix1(drawX,drawZ);
     QPainter p1(&pix1);
@@ -6180,7 +6181,7 @@ void DrawWidget::mapping(){
         //qDebug("jiaodu: %f",rotation[num[0][i]]);
         //qDebug("!!!!!!!!!%f",stretch[num[0][i]]/windowScale);
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[0][i];j++){
             tempPath++;
@@ -6199,7 +6200,7 @@ void DrawWidget::mapping(){
     pix1.save("../draw/image/1.png");
 
 
-    //µÚ¶ş·ùÍ¼
+    //ç¬¬äºŒå¹…å›¾
     judgeIntersection(num,1,&hasNum,midWidth-drawX/2-drawZ,midHeight-drawY/2,drawZ,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix2(drawZ,drawY);
@@ -6223,7 +6224,7 @@ void DrawWidget::mapping(){
 
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[1][i];j++){
             tempPath++;
@@ -6242,7 +6243,7 @@ void DrawWidget::mapping(){
     pix2.save("../draw/image/2.png");
 
 
-    //µÚÈı·ùÍ¼
+    //ç¬¬ä¸‰å¹…å›¾
     judgeIntersection(num,2,&hasNum,midWidth-drawX/2,midHeight-drawY/2,drawX,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix3(drawX,drawY);
@@ -6265,7 +6266,7 @@ void DrawWidget::mapping(){
         p3.rotate(rotation[num[2][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[2][i];j++){
             tempPath++;
@@ -6287,7 +6288,7 @@ void DrawWidget::mapping(){
 
 
 
-    //µÚËÄ·ùÍ¼
+    //ç¬¬å››å¹…å›¾
     judgeIntersection(num,3,&hasNum,midWidth+drawX/2,midHeight-drawY/2,drawZ,drawY);
     //qDebug("%d",hasNum);
     QPixmap pix4(drawZ,drawY);
@@ -6310,7 +6311,7 @@ void DrawWidget::mapping(){
         p4.rotate(rotation[num[3][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[3][i];j++){
             tempPath++;
@@ -6331,7 +6332,7 @@ void DrawWidget::mapping(){
 
 
 
-    //µÚÎå·ùÍ¼
+    //ç¬¬äº”å¹…å›¾
     judgeIntersection(num,4,&hasNum,midWidth-drawX/2,midHeight+drawY/2,drawX,drawZ);
     //qDebug("%d",hasNum);
     QPixmap pix5(drawX,drawZ);
@@ -6353,7 +6354,7 @@ void DrawWidget::mapping(){
         p5.rotate(rotation[num[4][i]]);
 
 
-        //ÕÒµ½path
+        //æ‰¾åˆ°path
         tempPath=allPath.begin();
         for(int j=1;j<num[4][i];j++){
             tempPath++;
@@ -6375,10 +6376,10 @@ void DrawWidget::mapping(){
          QMessageBox msgBox(this);
          //msgBox.setIconPixmap(QPixmap("../draw/icon/huabu.png"));
 
-         msgBox.setWindowTitle(tr("ÌáÊ¾"));
-         msgBox.setText(tr("µ±Ç°Ëõ·Å±ÈÀı±ØĞëÎª1        "));
+         msgBox.setWindowTitle(tr("æç¤º"));
+         msgBox.setText(tr("å½“å‰ç¼©æ”¾æ¯”ä¾‹å¿…é¡»ä¸º1        "));
          msgBox.setMinimumSize(200,100);
-        //QMessageBox::about(this,tr("ÌáÊ¾ĞÅÏ¢"),tr("¸üĞÂ³É¹¦"));
+        //QMessageBox::about(this,tr("æç¤ºä¿¡æ¯"),tr("æ›´æ–°æˆåŠŸ"));
          msgBox.exec();
     }
 
@@ -6397,7 +6398,7 @@ void DrawWidget::mouseMoveEvent(QMouseEvent *event){
             oPointMove(event);
         }
 
-        if(flag==6){//ÒÆ¶¯°ßµã
+        if(flag==6){//ç§»åŠ¨æ–‘ç‚¹
             spotMove(event);
             eventStyle=3;
         }
@@ -6414,7 +6415,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event){
         flag=0;
         spotSelectedNum=0;
 
-        if(oPoint.empty()&&oPointAll.empty()){//Èç¹ûÁ´±íÄÚÃ»ÓĞµã,ÔğÖ±½Ó¼ÓÈëÒ»¸öµã
+        if(oPoint.empty()&&oPointAll.empty()){//å¦‚æœé“¾è¡¨å†…æ²¡æœ‰ç‚¹,è´£ç›´æ¥åŠ å…¥ä¸€ä¸ªç‚¹
             //widthChange=0;
             //heightChange=0;
         }
@@ -6426,7 +6427,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event){
         currentPoint1->setX(event->x());
         currentPoint1->setY(event->y());
         if(drawFlag){
-            //Ê×ÏÈÅĞ¶ÏÓĞÃ»ÓĞÑ¡ÖĞ±ğµÄ°ßµã»òÕßÔ­µã»òÕß±ğµÄ°ßµãµÄ¿ØÖÆµã
+            //é¦–å…ˆåˆ¤æ–­æœ‰æ²¡æœ‰é€‰ä¸­åˆ«çš„æ–‘ç‚¹æˆ–è€…åŸç‚¹æˆ–è€…åˆ«çš„æ–‘ç‚¹çš„æ§åˆ¶ç‚¹
             if(oPointSelected()||spotSelected()){
                 if(!ctrlFlag){
                     ctrlSize=0;
@@ -6436,7 +6437,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event){
                 return;
               }
             else
-            //Èô²»ÊÇÑ¡ÖĞ×´Ì¬£¬Ôò¼ÌĞø»­µã
+            //è‹¥ä¸æ˜¯é€‰ä¸­çŠ¶æ€ï¼Œåˆ™ç»§ç»­ç”»ç‚¹
                 mousePressNotDrawOk();
             if(!ctrlFlag){
                 ctrlSize=0;
@@ -6444,7 +6445,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event){
                 }
             }
         else{
-            //Èô·Ç»­±ÊÑ¡ÖĞ×´Ì¬
+            //è‹¥éç”»ç¬”é€‰ä¸­çŠ¶æ€
             if(oPointSelected()||spotSelected()){
                 if(!ctrlFlag){
                     ctrlSize=0;
@@ -6485,7 +6486,7 @@ void DrawWidget::mouseReleaseEvent(QMouseEvent *){
 void DrawWidget::mousePressNotDrawOk(){
     QPointF *tempPoint;
     list<QPointF*>::iterator F;
-    if(oPoint.empty()&&oPointAll.empty()){//Èç¹ûÁ´±íÄÚÃ»ÓĞµã,ÔğÖ±½Ó¼ÓÈëÒ»¸öµã
+    if(oPoint.empty()&&oPointAll.empty()){//å¦‚æœé“¾è¡¨å†…æ²¡æœ‰ç‚¹,è´£ç›´æ¥åŠ å…¥ä¸€ä¸ªç‚¹
         //widthChange=0;
         //heightChange=0;
         tempPoint=new QPointF;
@@ -6497,21 +6498,21 @@ void DrawWidget::mousePressNotDrawOk(){
         return;
     }
     else{
-        //Èç¹ûµÚÒ»¸öµãºÍ×îºóÒ»¸öµãÏàÍ¬,²¢ÇÒ×Üµã¸öÊı´óÓÚ2,Ôò»æÖÆ°ßµã
+        //å¦‚æœç¬¬ä¸€ä¸ªç‚¹å’Œæœ€åä¸€ä¸ªç‚¹ç›¸åŒ,å¹¶ä¸”æ€»ç‚¹ä¸ªæ•°å¤§äº2,åˆ™ç»˜åˆ¶æ–‘ç‚¹
         if(!oPoint.empty()){
                 F=oPoint.begin();
                 cPath=new(QPainterPath);
                 cPath->addEllipse((**F).x()-keyPointSize/2,(**F).y()-keyPointSize/2,keyPointSize,keyPointSize);
                 if(cPath->contains(*currentPoint)&&oPoint.size()>2)
                 {
-                    spotNum[++drawOk]=pointNum;//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+                    spotNum[++drawOk]=pointNum;//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
                     //qDebug("&&&&&&%d   %d",drawOk,spotNum[drawOk-1]);
-                    pointNum=0;//Çå¿ÕÎ´»­Íê°ßµã¼ÆÊıÆ÷
+                    pointNum=0;//æ¸…ç©ºæœªç”»å®Œæ–‘ç‚¹è®¡æ•°å™¨
                     addSpotOrigin(drawOk);
                     stretch[drawOk]=1;
                     rotation[drawOk]=0;
-                    addSpotPoint();//°Ñ¸Õ»æÖÆÍê°ßµãµÄµã±£´æÆğÀ´
-                    caculateOneCurve();//¼ÆËã×îºóÒ»¸ö°ßµãµÄÊı¾İ£¬°üÀ¨thePointºÍcPath
+                    addSpotPoint();//æŠŠåˆšç»˜åˆ¶å®Œæ–‘ç‚¹çš„ç‚¹ä¿å­˜èµ·æ¥
+                    caculateOneCurve();//è®¡ç®—æœ€åä¸€ä¸ªæ–‘ç‚¹çš„æ•°æ®ï¼ŒåŒ…æ‹¬thePointå’ŒcPath
                     eventStyle=1;
                     //qDebug("sdfsdf");
                     emit ChildWindowEvent();
@@ -6527,7 +6528,7 @@ void DrawWidget::mousePressNotDrawOk(){
           tempPoint->setX(currentPoint->x());
           tempPoint->setY(currentPoint->y());
           //qDebug("~~~~%f  %f",currentPoint->x(),currentPoint->y());
-          oPoint.push_back(tempPoint);//°ßµãÃ»ÓĞ»æÖÆÍê³É£¬¼Óµã
+          oPoint.push_back(tempPoint);//æ–‘ç‚¹æ²¡æœ‰ç»˜åˆ¶å®Œæˆï¼ŒåŠ ç‚¹
           pointNum++;
         }
     }
@@ -6611,7 +6612,7 @@ int DrawWidget::oPointMove(QMouseEvent *event){
     }
 
 
-    //°Ñ¿ØÖÆµã·Åµ½¼ÆËãlistÖĞ
+    //æŠŠæ§åˆ¶ç‚¹æ”¾åˆ°è®¡ç®—listä¸­
     oP1 = handlePointAll.begin();
                         //thePoint.clear();
     for(int i=1;i<oPointMoveFlag;i++){
@@ -6619,7 +6620,7 @@ int DrawWidget::oPointMove(QMouseEvent *event){
             oP1++;
             }
         }
-    //ÖØĞÂ¼ÆËãÄ³¸ö°ßµã¿ØÖÆµã
+    //é‡æ–°è®¡ç®—æŸä¸ªæ–‘ç‚¹æ§åˆ¶ç‚¹
     midPoint.clear();
     midM.clear();
     tranCoo.clear();
@@ -6638,7 +6639,7 @@ int DrawWidget::oPointMove(QMouseEvent *event){
         ++oP2;
     }
 
-    //¼ÓÈëpath
+    //åŠ å…¥path
     path=new(QPainterPath);
     list<QPointF*>::iterator midP =thePoint.begin();
     oP = oPointTemp.begin();
@@ -6677,7 +6678,7 @@ int DrawWidget::oPointMove(QMouseEvent *event){
     allPath.insert(tempPath,path);
     delete tempPathDelete;
 
-    /////////////////////////////////ÇåÀíÄÚ´æ
+    /////////////////////////////////æ¸…ç†å†…å­˜
     list<QPointF*>::iterator tempDelete;
     QPointF *tempDeletePoint;
     tempDelete=midPoint.begin();
@@ -6713,7 +6714,7 @@ int DrawWidget::oPointSelected(){
         temp1=oPoint.begin();
         cPath=new(QPainterPath);
         cPath->addEllipse((**temp1).x()-keyPointSize/2,(**temp1).y()-keyPointSize/2,keyPointSize,keyPointSize);
-        if(cPath->contains(*currentPoint))//Èç¹ûifÎªÕæ,ÔòµãÖØºÏ
+        if(cPath->contains(*currentPoint))//å¦‚æœifä¸ºçœŸ,åˆ™ç‚¹é‡åˆ
         {
             delete cPath;
             return 0;
@@ -6723,7 +6724,7 @@ int DrawWidget::oPointSelected(){
         for(;temp1!=oPoint.end();temp1++){
             cPath=new(QPainterPath);
             cPath->addEllipse((**temp1).x()-keyPointSize/2,(**temp1).y()-keyPointSize/2,keyPointSize,keyPointSize);
-            if(cPath->contains(*currentPoint))//Èç¹ûifÎªÕæ,ÔòµãÖØºÏ
+            if(cPath->contains(*currentPoint))//å¦‚æœifä¸ºçœŸ,åˆ™ç‚¹é‡åˆ
                 {
                     flag=2;
                     markFlag=1;
@@ -6771,7 +6772,7 @@ int DrawWidget::oPointSelected(){
             //qDebug("bian~~~~~~~:  %f %f",x,y);
             //qDebug("ooo~~~~~~~~:  %f %f",(**temp).x(),(**temp).y());
             //qDebug("  ");
-            if(cPath->contains(tempPoint1))//Èç¹ûifÎªÕæ,ÔòµãÖØºÏ
+            if(cPath->contains(tempPoint1))//å¦‚æœifä¸ºçœŸ,åˆ™ç‚¹é‡åˆ
                 {
                     flag=2;
                     markFlag=1;
@@ -6824,7 +6825,7 @@ int DrawWidget::oPointSelected(){
 //    for(;temp!=oPointAll.end();temp++){
 //       cPath=new(QPainterPath);
 //       cPath->addEllipse((**temp).x()-keyPointSize/2,(**temp).y()-keyPointSize/2,keyPointSize,keyPointSize);
-//       if(cPath->contains(*currentPoint))//Èç¹ûifÎªÕæ,ÔòµãÖØºÏ
+//       if(cPath->contains(*currentPoint))//å¦‚æœifä¸ºçœŸ,åˆ™ç‚¹é‡åˆ
 //           {
 //               flag=2;
 //               markFlag=1;
@@ -6847,7 +6848,7 @@ void DrawWidget::paintEvent(QPaintEvent *){
 
     QPainter p(this);
     spotColor.setRgb(255,255,255);
-    p.setRenderHint(QPainter::Antialiasing,true);//¿¹¾â³İäÖÈ¾
+    p.setRenderHint(QPainter::Antialiasing,true);//æŠ—é”¯é½¿æ¸²æŸ“
 
     drawCanvas(p);
     //getDigitalCanvas(p);
@@ -6864,7 +6865,7 @@ void DrawWidget::paintEvent(QPaintEvent *){
     if(showOPoint)
         drawOPoint(p);
 
-    if(oPoint.size()>1){//»æÖÆ¹ı³ÌÖ±Ïß
+    if(oPoint.size()>1){//ç»˜åˆ¶è¿‡ç¨‹ç›´çº¿
             drawProcessLine(p);
         }
 
@@ -6874,7 +6875,7 @@ void DrawWidget::paintEvent(QPaintEvent *){
 
         if(showOPoint){
             drawOPoint(p);
-            drawOrign(p);//»æÖÆ°ßµãÖĞ¼äÄÇ¸öµã
+            drawOrign(p);//ç»˜åˆ¶æ–‘ç‚¹ä¸­é—´é‚£ä¸ªç‚¹
         }
         if(radiusFlag){
                 drawMark(p);
@@ -6918,7 +6919,7 @@ void DrawWidget::readCanvasF(QString fileName){
 
     midWidth=tempWidth/2;
     midHeight=tempHeight/2;
-    //Í¨¹ıindex³õÊ¼»¯ÑÕÉ«
+    //é€šè¿‡indexåˆå§‹åŒ–é¢œè‰²
     for(int i=1;i<drawOk+1;i++){
         allColor.myColor[i]=iconColor[allColor.index[i]+1];
         allColor.myColor[i]=iconColor[allColor.index[i]+1];
@@ -6969,7 +6970,7 @@ void DrawWidget::rightPaste(){
     list<QPointF*>oPointTempAddSpecial;
     list<QPointF*>thePointTempAdd;
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄÔ­µãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹æ‰€åœ¨åŒºé—´
     for(int i=1;i<cpyNum;i++){//spotSelectedNum
         for(int j=1;j<spotNum[i]+1;j++){
             ++oP1;
@@ -6977,7 +6978,7 @@ void DrawWidget::rightPaste(){
     }
 
     QPointF *tempPoint;
-    //½«ÒÆ¶¯°ßµãµÄÔ­µãÑ¹Õ»µ½¼ÆËãÁ´±í
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„åŸç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
     for(int j=1;j<spotNum[cpyNum]+1;j++){
         tempPoint=new(QPointF);
         tempPoint->setX((**oP1).x());
@@ -6989,14 +6990,14 @@ void DrawWidget::rightPaste(){
     }
 
 
-    //ÕÒµ½ÒÆ¶¯°ßµãµÄ¿ØÖÆµãËùÔÚÇø¼ä
+    //æ‰¾åˆ°ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹æ‰€åœ¨åŒºé—´
     for(int i=1;i<cpyNum;i++){
         for(int j=1;j<2*spotNum[i]+1;j++){
             ++handleP;
         }
     }
 
-    //½«ÒÆ¶¯°ßµãµÄ¿ØÖÆµãÑ¹Õ»µ½¼ÆËãÁ´±í
+    //å°†ç§»åŠ¨æ–‘ç‚¹çš„æ§åˆ¶ç‚¹å‹æ ˆåˆ°è®¡ç®—é“¾è¡¨
     for(int j=1;j<2*spotNum[cpyNum]+1;j++){
         tempPoint=new(QPointF);
         tempPoint->setX((**handleP).x());
@@ -7010,7 +7011,7 @@ void DrawWidget::rightPaste(){
 
 
 
-    //¼ÆËãÒÆ¶¯°ßµãµÄÂ·¾¶
+    //è®¡ç®—ç§»åŠ¨æ–‘ç‚¹çš„è·¯å¾„
     path=new(QPainterPath);
     oP1 = oPointTempAddSpecial.begin();
     list<QPointF*>::iterator midP =thePointTempAdd.begin();
@@ -7040,7 +7041,7 @@ void DrawWidget::rightPaste(){
     allPath.push_back(path);
 
 
-    spotNum[++drawOk]=spotNum[cpyNum];//°Ñ°ßµãº¬µã¸öÊı±£´æÆğÀ´
+    spotNum[++drawOk]=spotNum[cpyNum];//æŠŠæ–‘ç‚¹å«ç‚¹ä¸ªæ•°ä¿å­˜èµ·æ¥
     //qDebug("&&&&&&%d   %d",drawOk,spotNum[drawOk-1]);
     stretch[drawOk]=stretch[cpyNum];
     rotation[drawOk]=rotation[cpyNum];
@@ -7066,17 +7067,17 @@ void DrawWidget::rightPaste(){
 void DrawWidget::rightDelete(){
 }
 
-//-----------xiaotian  ¼ÆËãÍ¼°¸Ãæ»ı±ÈÁĞ   ---totalArea×ÜÃæ»ı
+//-----------xiaotian  è®¡ç®—å›¾æ¡ˆé¢ç§¯æ¯”åˆ—   ---totalAreaæ€»é¢ç§¯
 void DrawWidget::getAreaRa(float areaRa[1000]){
     for(int i=0;i<=graphCount;i++){
         areaRa[i] = graphArea[i]/uptotalArea;
-        cout<<"Í¼°¸:"<<i+1<<"Ãæ»ıÕ¼±È:"<<areaRa[i]<<endl;
+        cout<<"å›¾æ¡ˆ:"<<i+1<<"é¢ç§¯å æ¯”:"<<areaRa[i]<<endl;
     }
 
 }
 
 
-//--------xiaotian   ÒÆ³ıÍ¼°¸£¬²¢ÖØĞÂÌí¼ÓĞ¡Í¼°¸
+//--------xiaotian   ç§»é™¤å›¾æ¡ˆï¼Œå¹¶é‡æ–°æ·»åŠ å°å›¾æ¡ˆ
 void DrawWidget::removePath(int index){
     list<QPainterPath*>::iterator pathIndex = allPath.begin();
     int i=0;
@@ -7090,10 +7091,10 @@ void DrawWidget::removePath(int index){
 
     allPath.remove(removepath);
     delete removepath;
-    //ÒÆ³ıµÚ¼¸¸öÍ¼°¸
+    //ç§»é™¤ç¬¬å‡ ä¸ªå›¾æ¡ˆ
     drawOk--;
-    //ÖĞĞÄµãÊı×éÇ°ÒÆ  ÏÂ±ê´Ó1¿ªÊ¼¡£
-    //¼ÇÂ¼ÒÆ³ıµÄÖĞĞÄµã×ø±êºÍµ±Ç°ÒÆ³ıÍ¼°¸µÄ³¤¶ÈºÍ¿í¶È
+    //ä¸­å¿ƒç‚¹æ•°ç»„å‰ç§»  ä¸‹æ ‡ä»1å¼€å§‹ã€‚
+    //è®°å½•ç§»é™¤çš„ä¸­å¿ƒç‚¹åæ ‡å’Œå½“å‰ç§»é™¤å›¾æ¡ˆçš„é•¿åº¦å’Œå®½åº¦
     int removeX = spotOriginX[index+1];
     int removeY = spotOriginY[index+1];
 
@@ -7105,12 +7106,12 @@ void DrawWidget::removePath(int index){
     int row = removeRow[index];
     int col = removeCol[index];
 
-    cout<<"µ±Ç°ĞĞ£º"<<currentRow<<"µ±Ç°ÁĞ"<<currentCol<<"ĞĞÊı"<<row<<"ÁĞÊı"<<col<<endl;
+    cout<<"å½“å‰è¡Œï¼š"<<currentRow<<"å½“å‰åˆ—"<<currentCol<<"è¡Œæ•°"<<row<<"åˆ—æ•°"<<col<<endl;
 
     for(int i=index+1;i<maxSize;i++){
         spotOriginX[i] = spotOriginX[i+1];
         spotOriginY[i] = spotOriginY[i+1];
-        //×ö·Å´óËõĞ¡ÓÃµÄ
+        //åšæ”¾å¤§ç¼©å°ç”¨çš„
         spotOriginOX[i] = spotOriginOX[i+1];
         spotOriginOY[i] = spotOriginOY[i+1];
         spotOriginPOX[i] = spotOriginPOX[i+1];
@@ -7121,8 +7122,8 @@ void DrawWidget::removePath(int index){
 
 
 
-    //ÖØĞÂ²åÈëÍ¼°¸¡£ÖĞĞÄµã£¬Í¼°¸´óĞ¡¡£  ²åÈëµÄÍ¼°¸Ó¦¸ÃÎªµ¥Î»´óĞ¡¡£µ¥Î»´óĞ¡Îª4¸ö·½¿é¸ñ¡£
-    //°´ÕÕµ±Ç°ÖĞĞÄµãÖØĞÂ²åÈëÍ¼°¸.
+    //é‡æ–°æ’å…¥å›¾æ¡ˆã€‚ä¸­å¿ƒç‚¹ï¼Œå›¾æ¡ˆå¤§å°ã€‚  æ’å…¥çš„å›¾æ¡ˆåº”è¯¥ä¸ºå•ä½å¤§å°ã€‚å•ä½å¤§å°ä¸º4ä¸ªæ–¹å—æ ¼ã€‚
+    //æŒ‰ç…§å½“å‰ä¸­å¿ƒç‚¹é‡æ–°æ’å…¥å›¾æ¡ˆ.
 
     /*
     path = new(QPainterPath);
@@ -7135,7 +7136,7 @@ void DrawWidget::removePath(int index){
     spotOriginOY[drawOk]=spotOriginY[drawOk]-midHeight;
     spotOriginPOX[drawOk]=spotOriginOX[drawOk];
     spotOriginPOY[drawOk]=spotOriginOY[drawOk];
-    //Ñ¹Ëõ4 -----------------------xiaotian  µ÷³É²»Ñ¹Ëõ
+    //å‹ç¼©4 -----------------------xiaotian  è°ƒæˆä¸å‹ç¼©
     stretch[drawOk]=windowScale/4;
     rotation[drawOk]=0;
     */
@@ -7145,7 +7146,7 @@ void DrawWidget::removePath(int index){
 
 
 
-//-----------xiaotian  ÉèÖÃÊıÂëÃÔ²Ê°ßµãÑÕÉ«
+//-----------xiaotian  è®¾ç½®æ•°ç è¿·å½©æ–‘ç‚¹é¢œè‰²
 void DrawWidget::setAutoSingleColor(spotColorAll tempAllColor,int tempIndex,int count){
     allColor.index[count] = tempAllColor.index[count];
     allColor.myColor[count] = iconColor[tempAllColor.index[count] + 1];
@@ -7195,8 +7196,8 @@ int DrawWidget::saveSpotPoint(){
              }
         else{
              QMessageBox msgBox(this);
-             msgBox.setWindowTitle(tr("ÌáÊ¾"));
-             msgBox.setText(tr("µ±Ç°Ëõ·Å±ÈÀı±ØĞëÎª1        "));
+             msgBox.setWindowTitle(tr("æç¤º"));
+             msgBox.setText(tr("å½“å‰ç¼©æ”¾æ¯”ä¾‹å¿…é¡»ä¸º1        "));
              msgBox.setMinimumSize(200,100);
              msgBox.exec();
              return 0;
@@ -7205,8 +7206,8 @@ int DrawWidget::saveSpotPoint(){
     }
     else{
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("ÌáÊ¾"));
-        msgBox.setText(tr("Ö»ÓĞÔÚÎåÃæ»­²¼ÏÂÄÜÉú³ÉÍ¼Ö½£¡        "));
+        msgBox.setWindowTitle(tr("æç¤º"));
+        msgBox.setText(tr("åªæœ‰åœ¨äº”é¢ç”»å¸ƒä¸‹èƒ½ç”Ÿæˆå›¾çº¸ï¼        "));
         msgBox.setMinimumSize(200,100);
         msgBox.exec();
         return 0;
@@ -7521,7 +7522,7 @@ void DrawWidget::setHandlePoint(QMouseEvent *event){
     list<QPointF*>::iterator oP;
     if(flag==4){
         oP = handlePointAll.begin();
-        for(;oP!=handlePointAll.end();oP++){//±éÀúhandlePointAll£¬ÕÒ³öÑ¡ÖĞÒ»¸ö¿ØÖÆµã
+        for(;oP!=handlePointAll.end();oP++){//éå†handlePointAllï¼Œæ‰¾å‡ºé€‰ä¸­ä¸€ä¸ªæ§åˆ¶ç‚¹
             if(fabs((**oP).x()+spotOriginX[spotSelectedNum]-handleA.x())<0.001&&fabs((**oP).y()+spotOriginY[spotSelectedNum]-handleA.y())<0.001){
                 (**oP).setX((**oP).x()+offset.x());
                 (**oP).setY((**oP).y()+offset.y());//qDebug("11111111");
@@ -7537,7 +7538,7 @@ void DrawWidget::setHandlePoint(QMouseEvent *event){
                 //handleA.setX(x-widthChange);
                 //handleA.setY(y-heightChange);
                 oP = handlePointAll.begin();
-                for(;oP!=handlePointAll.end();oP++){//ĞŞ¸ÄÓëÑ¡ÖĞµÄ¿ØÖÆµã¶ÔÓ¦µÄÁíÒ»¸ö¿ØÖÆµã
+                for(;oP!=handlePointAll.end();oP++){//ä¿®æ”¹ä¸é€‰ä¸­çš„æ§åˆ¶ç‚¹å¯¹åº”çš„å¦ä¸€ä¸ªæ§åˆ¶ç‚¹
                     if(fabs((**oP).x()+spotOriginX[spotSelectedNum]-handleB.x())<0.001&&fabs((**oP).y()+spotOriginY[spotSelectedNum]-handleB.y())<0.001){
                         (**oP).setX(2*handleO.x()-temp.x());//qDebug("sssssss");
                         (**oP).setY(2*handleO.y()-temp.y());
@@ -7551,7 +7552,7 @@ void DrawWidget::setHandlePoint(QMouseEvent *event){
         }
     }
 
-    if(flag==5){//Í¬ÉÏ£¬flagÎª5±íÊ¾Ñ¡ÖĞµÄÊÇµÚ¶ş¸ö¿ØÖÆµã
+    if(flag==5){//åŒä¸Šï¼Œflagä¸º5è¡¨ç¤ºé€‰ä¸­çš„æ˜¯ç¬¬äºŒä¸ªæ§åˆ¶ç‚¹
         oP = handlePointAll.begin();
         for(;oP!=handlePointAll.end();oP++){
             if(fabs((**oP).x()+spotOriginX[spotSelectedNum]-handleB.x())<0.001&&fabs((**oP).y()+spotOriginY[spotSelectedNum]-handleB.y())<0.001){
@@ -7594,7 +7595,7 @@ void DrawWidget::wheelEvent(QWheelEvent *event){
     preWindowScale=windowScale;
     int canvasFlag=0;
 
-    //ÅĞ¶Ï»¬ÂÖ¹ö¶¯·½Ïò
+    //åˆ¤æ–­æ»‘è½®æ»šåŠ¨æ–¹å‘
     if(event->delta()>0){
         windowScale*=1.4142135623;
         if(windowScale>90){
@@ -7604,18 +7605,18 @@ void DrawWidget::wheelEvent(QWheelEvent *event){
         float tempCanvasX,tempCanvasY;
         tempCanvasX=canvasX*windowScale;
         tempCanvasY=canvasY*windowScale;
-        //showArea;drawWidget´óĞ¡·¢Éú±ä»¯
+        //showArea;drawWidgetå¤§å°å‘ç”Ÿå˜åŒ–
         if(tempCanvasX>showArea->viewport()->width()||tempCanvasY>showArea->viewport()->height()){
             canvasFlag=1;
         }
-        //drawWidget´óĞ¡Ã»·¢Éú±ä»¯
+        //drawWidgetå¤§å°æ²¡å‘ç”Ÿå˜åŒ–
         else if(tempCanvasX<showArea->viewport()->width()&&tempCanvasY<showArea->viewport()->height()){
             canvasFlag=0;
         }
 
 
         if(canvasFlag){
-            //qDebug("%d",height());´óĞ¡·¢Éú±ä»¯ºóµÄ´¦Àí
+            //qDebug("%d",height());å¤§å°å‘ç”Ÿå˜åŒ–åçš„å¤„ç†
             if(tempCanvasX>showArea->viewport()->width()&&tempCanvasY<showArea->viewport()->height()){
                 this->setGeometry(0,0,tempCanvasX,showArea->viewport()->height());
                 //qDebug("   %d %d",showArea->viewport()->width(),showArea->viewport()->height());
@@ -7653,7 +7654,7 @@ void DrawWidget::wheelEvent(QWheelEvent *event){
             preMidWidth=midWidth;
             preMidHeight=midHeight;
         }else{
-            //Èç¹ûdrawWidget±ÈshowAreaĞ¡£¬±íÊ¾´°¿ÚĞèÒª»¹Ô­
+            //å¦‚æœdrawWidgetæ¯”showAreaå°ï¼Œè¡¨ç¤ºçª—å£éœ€è¦è¿˜åŸ
             this->setGeometry(0,0,showArea->viewport()->width(),showArea->viewport()->height());
 
             midWidth=width()/2;
